@@ -55,6 +55,42 @@ function EquipmentPage() {
       image: 'https://picsum.photos/id/4/200/300',
       category: 'Yoga',
     },
+    {
+      id: 5,
+      title: 'Yoga mat',
+      type: 'Fitness',
+      status: 'Available',
+      department: 'Fitness',
+      year: 2022,
+      location: 'Yoga studio',
+      studentid: '64X1XXXXX',
+      image: 'https://picsum.photos/id/4/200/300',
+      category: 'Yoga',
+    },
+    {
+      id: 6,
+      title: 'Treadmill',
+      type: 'Fitness',
+      status: 'Available',
+      department: 'Fitness',
+      year: 2021,
+      location: 'Gym',
+      studentid: '642XXXXXX',
+      image: 'https://picsum.photos/id/3/200/300',
+      category: 'Equipment',
+    },
+    {
+      id: 7,
+      title: 'triple',
+      type: 'Fitness',
+      status: 'Available',
+      department: 'Fitness',
+      year: 2021,
+      location: 'Gym',
+      studentid: '642XXXXXX',
+      image: 'https://picsum.photos/id/3/200/300',
+      category: 'Equipment',
+    },
   ]);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -63,9 +99,9 @@ function EquipmentPage() {
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
-
   const handleCategorySelect = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
+    console.log(selectedCategory);
   };
 
   const filteredEquipmentData = equipmentData.filter((equipment) => {
@@ -81,10 +117,12 @@ function EquipmentPage() {
   return (
     <div className="Equipment_page">
       <div className="Equipment_header">
-        <CategoryDropdown
-          selectedCategory={selectedCategory}
-          handleCategorySelect={handleCategorySelect}
-        />
+        <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
+          <option value='All'>All</option>
+          <option value='Equipment'>Equipment</option>
+          <option value='Yoga'>Yoga</option>
+          <option value='Hardware'>Hardware</option>
+        </select>
         <input
           type="text"
           value={searchQuery}

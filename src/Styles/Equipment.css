@@ -8,7 +8,11 @@
     align-items: center;
     margin-bottom: 20px;
   }
-  
+
+  .Equipment_content > * {
+    width: calc(33.33% - 10px);
+    margin-bottom: 10px; /* Reduce the margin-bottom value */
+  }
   @media only screen and (max-width: 767px) {
     .Equipment_header {
       flex-direction: column;
@@ -16,6 +20,7 @@
     }
   
     .Equipment_header > * {
+      
       margin-bottom: 10px;
     }
   }
@@ -25,6 +30,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      margin: 3%;
     }
   
     .Equipment_content > * {
@@ -33,9 +39,9 @@
     }
   }
   
-  @media only screen and (min-width: 992px) {
+  /* @media only screen and (min-width: 992px) {
     .Equipment_content > * {
       width: calc(25% - 10px);
     }
-  }
+  } */
   
