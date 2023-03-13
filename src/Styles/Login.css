@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&family=Taviraj&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-family:"Noto Sans Thai", sans-serif ;
+}
+.container-Log-In{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5rem;
+    /* border: 2px solid red; */
+}
+.Log-in-header{
+    display: block;
+    text-align:center;
+    margin: 0 0 50px 20px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+.form-Log-In{
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+     padding: 10px 100px;
+     display: flex;
+     align-items: center;
+     justify-content:center;
+     flex-direction: column;
+     width: 500px;
+     height: 500px;
+
+
+}
+.form-control-Log-In{
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom:2px;
+    
+}
+.form-control-Log-In label{
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.form-control-Log-In input{
+    display: block;
+    margin-bottom: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width:450px;
+    padding: 10px;
+    font-size: 14px;
+}
+.Log-in-btn{
+    background: #D8482F;
+    color: white;
+    cursor:pointer;
+    width:450px;
+    margin: 20px;
+    border: 2px solid #D8482F;
+    display: block;
+    padding:10px;
+    font-size: 16px;
+}
