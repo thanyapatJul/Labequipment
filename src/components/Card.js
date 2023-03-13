@@ -5,15 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Card.css'
+import {Link,useNavigate} from 'react-router-dom';
+import Modal from '../components/Modal'
 function CardDisplay({ id, title, type, status, department, year, location, image, category,studentid }) {
   const [cardTitle, setCardTitle] = useState(title);
 
-  const handleClick = () => {
-    setCardTitle('New Title');
-  };
 
   return (
-    <Card style={{ width: '25rem'  }}>
+    <Card style={{ width: '21rem'  }}>
       <Card.Img variant="top" src={image} />
       <Card.Title>{cardTitle}</Card.Title>
       <Card.Body>
@@ -47,9 +46,8 @@ function CardDisplay({ id, title, type, status, department, year, location, imag
             <p>studentid : {studentid}</p>
           </Col>
         </Row>
-        <Button variant="primary" onClick={handleClick}>
-          Borrow
-        </Button>
+        <Modal>
+        </Modal>
       </Card.Body>
     </Card>
   );

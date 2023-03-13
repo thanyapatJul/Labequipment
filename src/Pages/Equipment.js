@@ -96,12 +96,19 @@ function EquipmentPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+
+  const [selectedType, setSelectedType] = useState('All');
+  
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
   const handleCategorySelect = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
     console.log(selectedCategory);
+  };
+  const handleTypeSelect = (selectedType) => {
+    setSelectedType(selectedType);
+    console.log(selectedType);
   };
 
   const filteredEquipmentData = equipmentData.filter((equipment) => {
@@ -118,7 +125,13 @@ function EquipmentPage() {
     <div className="Equipment_page">
       <div className="Equipment_header">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
-          <option value='All'>All</option>
+          <option value='All'>All-cate</option>
+          <option value='Equipment'>Equipment</option>
+          <option value='Yoga'>Yoga</option>
+          <option value='Hardware'>Hardware</option>
+        </select>
+        <select value={selectedType} onChange={(e) => handleTypeSelect(e.target.value)}>
+          <option value='All'>All-type</option>
           <option value='Equipment'>Equipment</option>
           <option value='Yoga'>Yoga</option>
           <option value='Hardware'>Hardware</option>
@@ -129,12 +142,12 @@ function EquipmentPage() {
           onChange={handleSearch}
           placeholder="Search equipment..."
         />
-        <Button>Search</Button>
+
       </div>
 
-      <div className="row Equipment_content">
+      <div className="Equipment_content">
         {filteredEquipmentData.map((equipment) => (
-          <div key={equipment.id} className="col-lg-4 col-md-6 col-sm-12">
+          <div key={equipment.id} className="Card">
             <CardDisplay
               id={equipment.id}
               title={equipment.title}
