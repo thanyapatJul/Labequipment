@@ -3,6 +3,7 @@
   }
   
   .Equipment_header {
+    margin-left: 4%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,7 +44,7 @@
   
 
   select {
-    margin-left: 25%;
+    margin-left: 0%;
     display: block;
     padding: 10px;
     font-size: 16px;
@@ -54,7 +55,6 @@
   }
   
   input{
-    margin-left: 1%;
     display: block;
     padding: 10px;
     font-size: 16px;

@@ -46,7 +46,17 @@ function CardDisplay({ id, title, type, status, department, year, location, imag
             <p>studentid : {studentid}</p>
           </Col>
         </Row>
-        <Modal>
+        <Modal 
+              id={id}
+              title={title}
+              type={type}
+              status={status}
+              department={department}
+              year={year}
+              location={location}
+              image={image}
+              category={category}
+              studentid={studentid}>
         </Modal>
       </Card.Body>
     </Card>

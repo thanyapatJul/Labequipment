@@ -37,6 +37,7 @@ function Navbar() {
                   <Link to='/'> Home</Link>
                   <Link to='/about'> About us</Link>
                   <Link to='/equipment'> Equipment</Link>
+                  <Link to='/equipment'> Borrow List</Link>
                   <Link onClick={logout} to='/login'>  Logout   </Link>
 
                   <button onClick={toggleNavbar}>

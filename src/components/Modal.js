@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function Modal_popup() {
+function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -14,14 +14,15 @@ function Modal_popup() {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Borrow
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+            <p>id = {id}</p>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
@@ -35,8 +36,9 @@ function Modal_popup() {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Form</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Label>Borrow date</Form.Label>
+              <Form.Control type="date" name="dob" placeholder="Date of Birth" />
+
             </Form.Group>
           </Form>
         </Modal.Body>
