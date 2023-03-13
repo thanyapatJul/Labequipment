@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&family=Taviraj&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-family:"Noto Sans Thai", sans-serif ;
+}
+.container-Register{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5rem;
+    /* border: 2px solid red; */
+}
+.form-control-Register-Top{
+    /* border: 2px solid #D8482F; */
+    margin-bottom: 10px;
+    padding-bottom:2px;
+    
+}
+.Register-header{
+    display: block;
+    text-align:center;
+    margin: 0 0 50px 20px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+.form-Register{
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+     padding: 10px 100px;
+     display: flex;
+     align-items: center;
+     justify-content:center;
+     flex-direction: column;
+     width: 500px;
+     height: 600px;
+}
+
+.form-Name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    flex-direction: row;
+    /* border: 2px solid red; */
+}
+.form-Name input{
+    display: block;
+    margin-bottom: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width:220px;
+    padding: 10px;
+    font-size: 14px;
+}
+.form-input-Group {
+    text-align: left;
+    margin: 8px;
+}
+.form-Major{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: row;
+    /* border: 2px solid red; */
+}
+.form-Major input{
+    display: block;
+    margin-bottom: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width:220px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.form-control-Register-Below{
+    /* border: 2px solid #D8482F; */
+    margin-bottom: 10px;
+    padding-bottom:2px;
+    
+}
+.form-control-Register-Below label{
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.form-control-Register-Below input{
+    display: block;
+    margin-bottom: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width:450px;
+    padding: 10px;
+    font-size: 14px;
+}
+.form-input{
+    text-align: center;
+    justify-content: center;
+    margin-left: 19px;
+
+}
+.Register-btn{
+    background: #D8482F;
+    color: white;
+    cursor:pointer;
+    width:450px;
+    margin: 20px;
+    border: 2px solid #D8482F;
+    display: block;
+    padding:10px;
+    font-size: 16px;
+}
