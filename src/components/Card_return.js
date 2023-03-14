@@ -6,11 +6,10 @@ import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Card.css'
 import {Link,useNavigate} from 'react-router-dom';
-import Modal from '../components/Modal'
 import Return from '../components/Return'
-function CardDisplay({ id, title, type, status, department, year, location, image, category,studentid }) {
-  const [cardTitle, setCardTitle] = useState(title);
 
+function CardDisplay({ id, title, status, type, image, category }) {
+  const [cardTitle, setCardTitle] = useState(title);
 
   return (
     <Card style={{ width: '21rem'  }}>
@@ -28,37 +27,16 @@ function CardDisplay({ id, title, type, status, department, year, location, imag
             <p>Type: {type}</p>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <p>Status: {status}</p>
-          </Col>
-          <Col>
-            <p>Department: {department}</p>
-          </Col>
-          <Col>
-            <p>Year: {year}</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <p>Location: {location}</p>
-          </Col>
-          <Col>
-            <p>studentid : {studentid}</p>
-          </Col>
-        </Row>
-        <Modal 
+        
+        <Return 
               id={id}
               title={title}
               type={type}
-              status={status}
-              department={department}
-              year={year}
-              location={location}
+              status ={status}
               image={image}
               category={category}
-              studentid={studentid}>
-        </Modal>
+              >
+        </Return>
       </Card.Body>
     </Card>
   );
