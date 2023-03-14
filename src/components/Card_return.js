@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Card.css'
+import '../Styles/Borrowing.css'
 import {Link,useNavigate} from 'react-router-dom';
 import Return from '../components/Return'
 
@@ -15,10 +16,10 @@ function CardDisplay({ id, title, status, type, image, category }) {
     <Card style={{ width: '21rem'  }}>
       <Card.Img variant="top" src={image} />
       <Card.Title>{cardTitle}</Card.Title>
-      <Card.Body>
+      <Card.Body className = "h1">
         <Row>
           <Col>
-            <p>ID: {id}</p>
+            <p> ID: {id} </p>
           </Col>
           <Col>
             <p>Category: {category}</p>
@@ -27,6 +28,7 @@ function CardDisplay({ id, title, status, type, image, category }) {
             <p>Type: {type}</p>
           </Col>
         </Row>
+        
         <Return 
               id={id}
               title={title}
