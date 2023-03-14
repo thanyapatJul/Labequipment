@@ -19,7 +19,6 @@ function App(){
         <Route exact path='/' element={<Home />} />
         <Route exact path='/login' element={<Login_page />} />
         <Route exact path='/register' element={<Register_page />} />
-        <Route exact path='/about' element={<About_page />} />
         <Route exact path='/equipment' element={<Equipment />} />
         <Route exact path='/borrowing' element={<Borrowing />} />
         {/* <Route exact path='/regist_complete' element={<Regist_success />} /> */}
