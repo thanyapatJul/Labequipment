@@ -94,7 +94,7 @@ function Borrowing() {
   );
 
   return (
-    <div className="Borrow_page">
+    <div className="wrapper">
       <div className="Borrow_header">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>

@@ -27,7 +27,6 @@ function CardDisplay({ id, title, status, type, image, category }) {
             <p>Type: {type}</p>
           </Col>
         </Row>
-        
         <Return 
               id={id}
               title={title}
@@ -41,5 +40,4 @@ function CardDisplay({ id, title, status, type, image, category }) {
     </Card>
   );
 }
-
 export default CardDisplay;
