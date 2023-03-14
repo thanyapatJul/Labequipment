@@ -1,9 +1,4 @@
 import React ,{useNavigate,useState,useEffect}from 'react'
-import colorsthemes from '../img/Group 40.svg';
-
-import Someimage from '../img/Group 35.svg';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import {Link} from "react-router-dom";
 import '../Styles/Login.css'
 
