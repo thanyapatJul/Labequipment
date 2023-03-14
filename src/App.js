@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Home from './Pages/Home'
 import Login_page from './Pages/Login';
 import Register_page from './Pages/Register';
-import About_page from './Pages/About';
 import Equipment from './Pages/Equipment'
 import Borrowing from './Pages/Borrowing'
 // import Regist_success from './Pages/regist_complete'
