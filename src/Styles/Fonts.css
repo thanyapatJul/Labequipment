@@ -1,0 +1,21 @@
+/* fontsize */
+.h1{
+    font-size: 150%;
+  }
+.h2{
+    
+    font-size: 18px;
+} 
+.h3{
+    font-size: 80%;
+} 
+.text-display{
+    font-size: 10px;  
+}  
+/* font */
+.Roboto-Slab{
+    font-family: 'Roboto Slab', serif;
+}
+.Kanit{
+    font-family: 'Kanit', sans-serif;
+}
