@@ -4,10 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Styles/Card.css'
 import {Link,useNavigate} from 'react-router-dom';
 import Modal from '../components/Modal'
 import Return from '../components/Return'
+import '../Styles/Components.css'
+
 function CardDisplay({ id, title, type, status, department, year, location, image, category,studentid }) {
   const [cardTitle, setCardTitle] = useState(title);
 

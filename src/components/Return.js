@@ -3,7 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import '../Styles/Fonts.css'
+import '../Styles/Page.css'
+import '../Styles/Components.css'
 
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
   const [show, setShow] = useState(false);
@@ -13,9 +15,10 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Return
-      </Button>
+    
+    <Button variant="primary" onClick={handleShow} style={{ fontSize: "22px" }} className="card__btn Kanit">
+      Return
+    </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -48,9 +51,9 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          {/* <Button variant="primary" onClick={handleClose}>
             Sent Return
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>

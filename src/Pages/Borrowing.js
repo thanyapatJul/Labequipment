@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import CardDisplay from '../components/Card_return';
 import CategoryDropdown from '../components/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Styles/Borrowing.css';
+import '../Styles/Fonts.css'
+import '../Styles/Page.css'
+import '../Styles/Components.css'
 import Button from 'react-bootstrap/Button';
 
 function Borrowing() {
   const [borrowingData, setborrowingData] = useState([
     {
-      id: 1,
+      id: 1, 
       title: 'Laptop',
       type: 'Electronics',
       status: 'Available',
@@ -94,8 +96,8 @@ function Borrowing() {
   );
 
   return (
-    <div className="wrapper">
-      <div className="Borrow_header">
+    <div >
+      <div className="Borrow_header ">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
           <option value='Equipment'>Equipment</option>
@@ -117,18 +119,17 @@ function Borrowing() {
 
       </div>
 
-      <div className="Borrow_content">
+      <div className="row row-cols-3 Borrow_content" >
         {filteredborrowingData.map((borrow) => (
-          <div key={borrow.id} className="Card">
-            <CardDisplay
-              id={borrow.id}
-              title={borrow.title}
-              type={borrow.type}
-              status={borrow.status}
-              image={borrow.image}
-              category={borrow.category}
-            />
-          </div>
+          <CardDisplay
+            key={borrow.id}
+            id={borrow.id}
+            title={borrow.title}
+            type={borrow.type}
+            status={borrow.status}
+            image={borrow.image}
+            category={borrow.category}
+          />
         ))}
       </div>
     </div>
