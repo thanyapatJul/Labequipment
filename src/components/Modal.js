@@ -48,7 +48,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
           </Button>
           <Button variant="primary" onClick={handleClose}>
             Sent request
-          </Button>
+          </Button >
         </Modal.Footer>
       </Modal>
     </>

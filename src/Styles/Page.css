@@ -1,0 +1,66 @@
+/* Borrowing Page */
+.Borrow_header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px;
+    grid-gap: 10px;
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+    box-shadow: 0 0 10px 5px #dfdcdb;
+    border-radius: 1rem;
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .Borrow_header select,
+    .Borrow_header input {
+      width: 100%;
+      margin-bottom: 10px;
+      
+    }
+    .Borrow_header {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .Borrow_header > * {
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* 
+  @media only screen and (min-width: 768px) {
+    .Borrow_header select,
+    .Borrow_header input {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+  } */
+  
+  .Borrow_content {
+    display: grid;
+    grid-template-columns: repeat(3, 0.5fr);
+    grid-gap: 20px;
+    padding: 30px;
+  }
+  
+  @media only screen and (max-width: 1919px) {
+    .Borrow_content {
+      grid-template-columns: repeat(3, 0.5fr);
+    }
+  }
+  
+  @media only screen and (max-width: 1439px) {
+    .Borrow_content {
+      grid-template-columns: repeat(2, 0.5fr);
+    }
+  }
+  
+  @media only screen and (max-width: 820px) {
+    .Borrow_content {
+      grid-template-columns: repeat(1, 0.5fr);
+      /* grid-template-columns: repeat(auto-fit, minmax(14rem, 16rem)); */
+    }
+  }
+  
