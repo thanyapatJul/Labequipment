@@ -22,20 +22,16 @@ function CardDisplay({ id, title, status, type, image, category }) {
   useEffect(() => {runHolder('image-class-name'); });
 
   return (
-    <Row style={{marginLeft: '5%'}} className="g-3">
-      <Card className="card mx-auto"
-        style={{
-          // minWidth: '25rem',
-          // height: '100%',
-          // display: 'flex',
-          alignItems:'center',
-          padding: '20px',
-        }}
-      >
-        <Card.Img variant="top" src="holder.js/300x200"  />
+    <Row style={{ marginLeft: '2%' }}>
+      <Card className="card mx-auto">
+        <Card.Img variant="top" src="holder.js/300x200" style={{ objectFit: 'cover' }} />
+        
         {/* <Card.Img variant="top" src={image}/> */}
+        
         <Card.Title className="Kanit" >{cardTitle}</Card.Title>
+        
         {/* <Card.Body className="h1"> */}
+        
         <Card.Body className="Roboto-Slab">
             <Row >
               <h5>
@@ -43,6 +39,8 @@ function CardDisplay({ id, title, status, type, image, category }) {
                   <p className="Roboto-Slab">ID: {id}</p>
                   <p className="Roboto-Slab">Category: {category}</p>
                   <p className="Roboto-Slab">Type: {type}</p>
+
+
                 </Col>
               </h5>
             </Row>
