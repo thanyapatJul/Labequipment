@@ -39,7 +39,7 @@ function CardDisplay({ id, title, status, type, image, category }) {
                   <p className="Roboto-Slab">ID: {id}</p>
                   <p className="Roboto-Slab">Category: {category}</p>
                   <p className="Roboto-Slab">Type: {type}</p>
-
+                  {/* <p className="Roboto-Slab">Type: {type}</p> */}
 
                 </Col>
               </h5>
