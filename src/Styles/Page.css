@@ -40,7 +40,7 @@
   
   .Borrow_content {
     display: grid;
-    grid-template-columns: repeat(3, 0.5fr);
+    grid-template-columns: repeat(4, 0.3fr);
     grid-gap: 20px;
     padding: 30px;
   }
