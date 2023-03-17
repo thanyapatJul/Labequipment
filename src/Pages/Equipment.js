@@ -16,7 +16,7 @@ function EquipmentPage() {
       year: 2022,
       location: 'Room A101',
       studentid: '64XXXXXX',
-      image: 'https://picsum.photos/id/1/200/300',
+      image: '',
       category: 'Hardware',
     },
     {
@@ -28,7 +28,7 @@ function EquipmentPage() {
       year: 2021,
       location: 'Recording Studio',
       studentid: '63XXXXXX',
-      image: 'https://picsum.photos/id/2/200/300',
+      image: '',
       category: 'Hardware',
     },
     {
@@ -40,7 +40,7 @@ function EquipmentPage() {
       year: 2021,
       location: 'Gym',
       studentid: '642XXXXXX',
-      image: 'https://picsum.photos/id/3/200/300',
+      image: '',
       category: 'Equipment',
     },
     {
@@ -52,7 +52,7 @@ function EquipmentPage() {
       year: 2021,
       location: 'Yoga studio',
       studentid: '64X1XXXXX',
-      image: 'https://picsum.photos/id/4/200/300',
+      image: '',
       category: 'Yoga',
     },
     {
@@ -64,7 +64,7 @@ function EquipmentPage() {
       year: 2022,
       location: 'Yoga studio',
       studentid: '64X1XXXXX',
-      image: 'https://picsum.photos/id/4/200/300',
+      image: '',
       category: 'Yoga',
     },
     {
@@ -76,7 +76,7 @@ function EquipmentPage() {
       year: 2021,
       location: 'Gym',
       studentid: '642XXXXXX',
-      image: 'https://picsum.photos/id/3/200/300',
+      image: '',
       category: 'Equipment',
     },
     {
@@ -88,7 +88,7 @@ function EquipmentPage() {
       year: 2021,
       location: 'Gym',
       studentid: '642XXXXXX',
-      image: 'https://picsum.photos/id/3/200/300',
+      image: '',
       category: 'Equipment',
     },
   ]);

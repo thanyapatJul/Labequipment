@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import CardDisplay from '../components/Card_return';
-import CategoryDropdown from '../components/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
-import Button from 'react-bootstrap/Button';
+
 
 function Borrowing() {
   const [borrowingData, setborrowingData] = useState([
