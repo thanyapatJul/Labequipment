@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
+function Modal_popup() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,7 +13,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="success" onClick={handleShow}>
         Add Item
       </Button>
 

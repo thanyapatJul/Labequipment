@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Equipment.css';
 // ------------for test
 
-function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
+function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
@@ -67,7 +67,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea2"
                 >
-                <Form.Label>Type</Form.Label>
+                <Form.Label>Type : {type}</Form.Label>
                 <Form.Control type="text" name="dob" placeholder="Insert Type" />
 
                 </Form.Group>
@@ -86,7 +86,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                     controlId="exampleForm.ControlTextarea2"
                     >
                         <Form.Label>Name: </Form.Label>
-                        <p>KJPIe</p>
+                        <p>{name}</p>
                     </Form.Group>
                     <Form.Group
                     className="mb-3"

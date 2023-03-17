@@ -1,0 +1,120 @@
+.Equipment_page {
+    padding: 20px;
+  }
+  
+  .AdminEquipment_header {
+    margin-top: 2%;
+    margin-left: 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .Addsection {
+    margin-left: 6%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .Equipment_header {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .Equipment_header > * {
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .Equipment_content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-left: 5%;
+      margin-right: 3%;
+    }
+  
+    .Equipment_content > * {
+      width: calc(33.33% - 10px);
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media only screen and (min-width: 992px) {
+    .Equipment_content > * {
+      width: calc(25% - 10px);
+    }
+  }
+  
+
+  select {
+    margin-left: 0%;
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 10%;
+    height: 10%;
+  }
+  
+  input{
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 70%;
+    margin-right: 4%;
+    height: 43px;
+    height: 10%;
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+    border: 1px solid #2196F3;
+    box-shadow: 0 0 5px #2196F3;
+  }
+
+
+  /* ------------------------for test----------------------- */
+  .embedded-text-container{
+
+  }
+  #embedded-text{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: row;
+    /* border: 2px solid red; */
+  }
+  #check-box-ItemDetail{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+  }
+  .Form-Container{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: row;
+  }
+  .Form-Container img{
+    margin-left: 3rem;
+    padding:2rem ;
+    /* width: 300px; */
+    /* height: 400px; */
+  }
+  .mb-3{
+    /* width: 500px; */
+  }

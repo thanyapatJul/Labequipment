@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import CardDisplay from '../components/Card_return';
+import CardDisplay from '../components/Admin_eqm_card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Styles/Fonts.css'
-import '../Styles/Page.css'
-import '../Styles/Components.css'
+import '../Styles/AdminEquipment.css';
+import Additem from '../components/AddItem'
 
-
-function Borrowing() {
-  const [borrowingData, setborrowingData] = useState([
+function AdminEquipmentPage() {
+  const [equipmentData, setEquipmentData] = useState([
     {
-      id: 1, 
+      id: 1,
       title: 'Laptop',
       type: 'Electronics',
       status: 'Available',
-      image: 'https://picsum.photos/id/1/200/300',
+      department: 'IT',
+      year: 2022,
+      location: 'Room A101',
+      studentid: '64XXXXXX',
+      image: '',
       category: 'Hardware',
     },
     {
@@ -21,7 +23,11 @@ function Borrowing() {
       title: 'Microphone',
       type: 'Audio',
       status: 'Borrowed',
-      image: 'https://picsum.photos/id/2/200/300',
+      department: 'Media',
+      year: 2021,
+      location: 'Recording Studio',
+      studentid: '63XXXXXX',
+      image: '',
       category: 'Hardware',
     },
     {
@@ -29,15 +35,23 @@ function Borrowing() {
       title: 'Treadmill',
       type: 'Fitness',
       status: 'Available',
-      image: 'https://picsum.photos/id/3/200/300',
+      department: 'Fitness',
+      year: 2021,
+      location: 'Gym',
+      studentid: '642XXXXXX',
+      image: '',
       category: 'Equipment',
     },
     {
       id: 4,
-      title: 'Treadmill',
+      title: 'Yoga mat',
       type: 'Fitness',
       status: 'Available',
-      image: 'https://picsum.photos/id/4/200/300',
+      department: 'Fitness',
+      year: 2021,
+      location: 'Yoga studio',
+      studentid: '64X1XXXXX',
+      image: '',
       category: 'Yoga',
     },
     {
@@ -45,7 +59,11 @@ function Borrowing() {
       title: 'Yoga mat',
       type: 'Fitness',
       status: 'Available',
-      image: 'https://picsum.photos/id/4/200/300',
+      department: 'Fitness',
+      year: 2022,
+      location: 'Yoga studio',
+      studentid: '64X1XXXXX',
+      image: '',
       category: 'Yoga',
     },
     {
@@ -53,7 +71,11 @@ function Borrowing() {
       title: 'Treadmill',
       type: 'Fitness',
       status: 'Available',
-      image: 'https://picsum.photos/id/4/200/300',
+      department: 'Fitness',
+      year: 2021,
+      location: 'Gym',
+      studentid: '642XXXXXX',
+      image: '',
       category: 'Equipment',
     },
     {
@@ -61,7 +83,11 @@ function Borrowing() {
       title: 'triple',
       type: 'Fitness',
       status: 'Available',
-      image: 'https://picsum.photos/id/3/200/300',
+      department: 'Fitness',
+      year: 2021,
+      location: 'Gym',
+      studentid: '642XXXXXX',
+      image: '',
       category: 'Equipment',
     },
   ]);
@@ -84,19 +110,19 @@ function Borrowing() {
     console.log(selectedType);
   };
 
-  const filteredborrowingData = borrowingData.filter((borrow) => {
+  const filteredEquipmentData = equipmentData.filter((equipment) => {
     if (selectedCategory === 'All') {
-      return true; 
+      return true; // include all equipment if "All" category is selected
     } else {
-      return borrow.category === selectedCategory; 
+      return equipment.category === selectedCategory; // only include equipment that matches selected category
     }
-  }).filter((borrow) =>
-    borrow.title.toLowerCase().includes(searchQuery.toLowerCase())
+  }).filter((equipment) =>
+    equipment.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div >
-      <div className="Borrow_header ">
+    <div className="AdminEquipment_page">
+      <div className="AdminEquipment_header">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
           <option value='Equipment'>Equipment</option>
@@ -113,26 +139,32 @@ function Borrowing() {
           type="text"
           value={searchQuery}
           onChange={handleSearch}
-          placeholder="Search Borrowing..."
+          placeholder="Search equipment..."
         />
-
       </div>
-
-      <div className="row row-cols-3 Borrow_content" >
-        {filteredborrowingData.map((borrow) => (
-          <CardDisplay
-            key={borrow.id}
-            id={borrow.id}
-            title={borrow.title}
-            type={borrow.type}
-            status={borrow.status}
-            image={borrow.image}
-            category={borrow.category}
-          />
+      <div className='Addsection'>
+            <Additem></Additem>
+      </div>
+      <div className="Equipment_content">
+        {filteredEquipmentData.map((equipment) => (
+          <div key={equipment.id} className="Card">
+            <CardDisplay
+              id={equipment.id}
+              title={equipment.title}
+              type={equipment.type}
+              status={equipment.status}
+              department={equipment.department}
+              year={equipment.year}
+              location={equipment.location}
+              image={equipment.image}
+              category={equipment.category}
+              studentid={equipment.studentid}
+            />
+          </div>
         ))}
       </div>
     </div>
   );
 }
 
-export default Borrowing;
+export default AdminEquipmentPage;
