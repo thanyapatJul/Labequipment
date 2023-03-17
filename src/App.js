@@ -7,6 +7,7 @@ import Register_page from './Pages/Register';
 import Equipment from './Pages/Equipment'
 import Borrowing from './Pages/Borrowing'
 import AdminEquipmentPage from './Pages/Admin_eqm_page'
+import AdminControl from './Pages/AdminControl';
 // import Regist_success from './Pages/regist_complete'
 import {BrowserRouter as Router ,Route, Routes} from 'react-router-dom'
 
@@ -22,6 +23,7 @@ function App(){
         <Route exact path='/equipment' element={<Equipment />} />
         <Route exact path='/borrowing' element={<Borrowing />} />
         <Route exact path='/admin' element={<AdminEquipmentPage />} />
+        <Route exact path='/admin_control' element={<AdminControl />} />
 
       </Routes>
       
