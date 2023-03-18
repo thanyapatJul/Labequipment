@@ -1,13 +1,18 @@
-import React ,{useNavigate,useState,useEffect}from 'react'
-import {Link} from "react-router-dom";
+import React ,{useState,useEffect}from 'react'
+import {Link,useNavigate} from "react-router-dom";
 import '../Styles/Login.css'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function Login_page(){
+    const navigate=useNavigate()
 
-    // const navigate=useNavigate()
-    // const MySwal = withReactContent(Swal)
+    const MySwal = withReactContent(Swal)
+    // get input from sid and password 
     const [inputs, setInputs] = useState({});
 
+
+    // show value in cole.log and change thee value real time 
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -15,59 +20,57 @@ function Login_page(){
         console.log(inputs)
   }
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-//     var myHeaders = new Headers();
-//     myHeaders.append("Content-Type", "application/json");
-//     myHeaders.append("Cookie", "jwt=token");
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    // myHeaders.append("Cookie", "jwt=token");
 
-//     var raw = JSON.stringify({
-//     "password": inputs.password,
-//     "email": inputs.sid
-//     });
-
-//     var requestOptions = {
-//     method: 'POST',
-//     headers: myHeaders,
-//     body: raw,
-//     redirect: 'follow'
-//     };
-
-//     fetch("http://127.0.0.1:8000/api/login", requestOptions)
-//     .then(response => response.json())
-
-//     .then(result => {
-//         console.log(result)
-//         if (result.jwt) {
-//             MySwal.fire({
-//                 html: <i>You have logged in!</i>,
-//                 icon: 'success'
-//               }).then((value) => {
-//             console.log(result)
-//             localStorage.setItem('token',result.jwt)
-//             localStorage.setItem('userid',result.id) //<-- When logic there's no id
-//             localStorage.setItem('username',result.username)
-//             navigate('/equipment')
-//             window.location.reload();  //<== refres after logedin
-//             })
-
-//         }
-//         else {
-//             MySwal.fire({
-//                 html: <i>Username or passsword is incorrect!</i>,
-//                 icon: 'error'
-//               })
-//         }
+    var formdata = new FormData();
+    formdata.append("sid", inputs.sid);
+    formdata.append("password", inputs.password);
     
-//     })
-//     .catch(error => console.log('error', error));
-//             console.log(inputs);
-//         }
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:5000/login", requestOptions)
+    .then(response => response.json())
+
+    .then(result => {
+        console.log(result)
+        if (result.access_token) {
+            MySwal.fire({
+                html: <i>You have logged in!</i>,
+                icon: 'success'
+              }).then((value) => {
+            console.log(result)
+            localStorage.setItem('token',result.access_token)
+            localStorage.setItem('username',result.role)
+            navigate('/main')
+            window.location.reload();  //<== refres after logedin
+            })
+
+        }
+        else {
+            MySwal.fire({
+                html: <i>Username or passsword is incorrect!</i>,
+                icon: 'error'
+              })
+        }
+    
+    })
+    .catch(error => console.log('error', error));
+            console.log(inputs);
+        }
+
 
     return (
         <div className ="container-Log-In">
-            <form className ="form-Log-In">
+            <form className ="form-Log-In" onSubmit={handleSubmit}>
                 <h2 className='Log-in-header'>เข้าสู่ระบบ</h2>
                 <div className="form-control-Log-In">
                     <label>รหัสประจำตัวนักศึกษา/Admin</label>
