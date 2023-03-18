@@ -65,7 +65,7 @@ function Borrowing() {
       category: 'Equipment',
     },
   ]);
-
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 

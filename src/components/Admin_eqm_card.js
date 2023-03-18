@@ -5,6 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {CardActionArea, CardActions } from '@mui/material';
 import Detailbtn from '../components/Admin_ItemDetail'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -20,8 +22,14 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
             {title} (id: {id})
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            <Col>
+              <Row style={{justifyContent: 'center', alignItems: 'center'}}>
+                status : {status}
+              </Row>
+              <Row style={{justifyContent: 'center', alignItems: 'center'}}>
+                Borrowby :{studentid}  
+              </Row>
+            </Col>
           </Typography>
         </CardContent>
       </CardActionArea>

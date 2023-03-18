@@ -46,7 +46,6 @@ function Navbar() {
                 <div className='rightSide'>
                   <Link to='/'> Home</Link>
                   <Link to='/equipment'> Equipment</Link>
-                  <Link to='/borrowing'> Borrowing List</Link>
                   <Link to='/login'> Login</Link>
                   <button onClick={toggleNavbar}>
                   <ReorderIcon />

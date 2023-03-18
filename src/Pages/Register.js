@@ -1,13 +1,14 @@
 import React ,{useState,useEffect}from 'react'
-import colorsthemes from '../img/Group 40.svg';
-// import '../Styles/About.css'
-import Someimage from '../img/Group 35.svg';
-// import { Typewriter } from 'react-simple-typewriter'
-// import Api from'../img/Api.png'
-// import Typ from'../img/Typ.png'
+import Swal from 'sweetalert2'
+import {useNavigate} from 'react-router-dom';
+import withReactContent from 'sweetalert2-react-content'
 import '../Styles/Register.css'
 
 function Register_page(){
+    const navigate=useNavigate()
+
+    const MySwal = withReactContent(Swal)
+
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
@@ -16,9 +17,60 @@ function Register_page(){
         setInputs(values => ({...values, [name]: value}))
         console.log(inputs)
   }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    var formData = new FormData();
+        formData.append("name", inputs.name);
+        formData.append("surname", inputs.surname);
+        formData.append("sid", inputs.sid);
+        formData.append("password", inputs.password);
+        formData.append("depart", inputs.depart);
+        formData.append("year", inputs.year);
+    
+    var requestOptions = {
+      method: 'POST',
+      body: formData,
+      redirect: 'follow'
+    };
+    
+    fetch("http://localhost:5000/register", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        if (result.access_token) {
+            MySwal.fire({
+                html: <i>Registry complete!</i>,
+                icon: 'success'
+              }).then((value) => {
+                console.log(result)
+                navigate('/')
+                localStorage.setItem('token',result.access_token)
+                localStorage.setItem('username',result.role)
+                window.location.reload();  //<== refres after logedin
+                })
+        }
+        else if (result.msg){
+          MySwal.fire({
+              html: <i>{result.msg}</i>,
+              icon: 'error'
+            })
+      }
+        else {
+          MySwal.fire({
+              html: <i>{result.name}</i>,
+              icon: 'error'
+            })
+      }
+    
+    })
+      .catch(error => console.log('error', error));
+    console.log(inputs);
+}
     return (
         <div className ="container-Register">
-            <form className ="form-Register">
+            <form className ="form-Register" onSubmit={handleSubmit}>
                 <h2 className='Register-header'>สมัครสมาชิก</h2>
                 <div className="form-control-Register-Top">
                     <div class ='form-Name'>
