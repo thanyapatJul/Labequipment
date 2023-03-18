@@ -3,6 +3,7 @@ import  '../Styles/AdminControl.css';
 
 function AdminControl() {
   const [isAddAdmin, setIsAddAdmin] = useState(true);
+  //const [isDELAdmin, setIsDELAdmin] = useState(false);
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [adminId, setAdminId] = useState('');
@@ -22,22 +23,23 @@ function AdminControl() {
   };
 
   const handleAddAdminClick = () => {
-        setIsAddAdmin(true);
-        toggleActive();
-        //console.log("1:",isActive)
+      setIsAddAdmin(true);//
+      //setIsDELAdmin(false);
+      //setActive(true);
+      //
+
   };
 
   const handleDeleteAdminClick = () => {
+        //setIsDELAdmin(true);//
         setIsAddAdmin(false);
-        toggleActive();
-        //console.log("2:",isActive)
   };
   //--------------hold color in btn
-  const [isActive, setActive] = useState(false);
+  // const [isActive, setActive] = useState(false);
 
-  const toggleActive = () => {
-    setActive(isActive);
-  };
+  // const toggleActive = () => {
+  //   setActive(isActive);
+  // };
 
   return (
     <div className='container-groub-AdminControl'>
@@ -45,8 +47,8 @@ function AdminControl() {
         <form className='Container-ADDAdmin'  onSubmit={handleAddAdminSubmit}>
             <h1>Admin Manage</h1>
             <div className='top-btn'>
-                <button className={!isActive ? "active" : "inactive"} onClick={handleAddAdminClick}>Add Admin</button>
-                <button className={isActive ? "active" : "inactive"}  onClick={handleDeleteAdminClick} >Delete Admin</button>
+                <button className=''  id='addBTN' onClick={handleAddAdminClick}>Add Admin</button>
+                <button className=''  id='delBTN' onClick={handleDeleteAdminClick} >Delete Admin</button>
             </div>
             <div className='form-control-Log-In'>
                 <label>
@@ -78,8 +80,8 @@ function AdminControl() {
         <form className='Container-DELAdmin' onSubmit={handleDeleteAdminSubmit}>
             <h1>Admin Manage</h1>
             <div className='top-btn'>
-                <button id='' onClick={handleAddAdminClick} >Add Admin</button>
-                <button id=''  onClick={handleDeleteAdminClick} >Delete Admin</button>
+                <button id='addBTN' onClick={handleAddAdminClick} >Add Admin</button>
+                <button id='delBTN'  onClick={handleDeleteAdminClick} >Delete Admin</button>
             </div>
             <div className='form-control-AddAdmin'>
                 <label>
