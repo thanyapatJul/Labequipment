@@ -165,10 +165,6 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                   <Form.Control type="file" name="image" accept="image/*" />
               </Form.Group>
             </div>
-            {/* <div>
-                <img src={image} alt=""/>
-            </div> */}
-
           </Form>
         </Modal.Body>
         <Modal.Footer>
