@@ -24,7 +24,6 @@ function App(){
         <Route exact path='/admin_equipment' element={<AdminEquipmentPage />} />
 
       </Routes>
-      
    </Router>
   </div>
   );
