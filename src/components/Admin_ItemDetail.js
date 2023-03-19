@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // ------------for test
-import '../Styles/Equipment.css';
+import '../Styles/AdminEquipment.css';
 // ------------for test
 
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
@@ -31,7 +31,6 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
         <Modal.Body>
           <Form className='Form-Container'>
             <div>
-                
                 <Form.Group 
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
@@ -79,44 +78,96 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 <Form.Control type="text" name="dob" placeholder=" Insert Category" />
 
                 </Form.Group>
-                <div className='embedded-text-container'>
+                {isChecked ?( //IsChecked means Avaliable 
+                  <div className='embedded-text-container'>
                     <Form.Group
                     className="mb-3"
-                    id='embedded-text'
+                    id='embedded-text-Ava'
                     controlId="exampleForm.ControlTextarea2"
                     >
-                        <Form.Label>Name: </Form.Label>
-                        <p>{name}</p>
+                        <Form.Label>First Name: </Form.Label>
+                        <Form.Control type="text" name="dob" placeholder=" Insert First Name" />
                     </Form.Group>
                     <Form.Group
                     className="mb-3"
-                    id='embedded-text'
+                    id='embedded-text-Ava'
+                    controlId="exampleForm.ControlTextarea2"
+                    >
+                        <Form.Label>Last Name: </Form.Label>
+                        <Form.Control type="text" name="dob" placeholder=" Insert Last Name" />
+                    </Form.Group>
+                    <Form.Group
+                    className="mb-3"
+                    id='embedded-text-Ava'
                     controlId="exampleForm.ControlTextarea2"
                     >
                         <Form.Label>Year: </Form.Label>
-                        <p>{year}</p>
+                        <Form.Control type="text" name="dob" placeholder=" Insert Year" />
                     </Form.Group>
                     <Form.Group
                     className="mb-3"
-                    id='embedded-text'
+                    id='embedded-text-Ava'
                     controlId="exampleForm.ControlTextarea2"
                     >
                         <Form.Label>Student ID: </Form.Label>
-                        <p>{studentid}</p>
+                        <Form.Control type="text" name="dob" placeholder=" Insert SID" />
                     </Form.Group>
                     <Form.Group
                     className="mb-3"
-                    id='embedded-text'
+                    id='embedded-text-Ava'
                     controlId="exampleForm.ControlTextarea2"
                     >
                         <Form.Label>Major: </Form.Label>
-                        <p>{department}</p>
+                        <Form.Control type="text" name="dob" placeholder=" Insert Major" />
                     </Form.Group>
-                </div>
+                  </div>
+                ):(//!IsChecked means Unavaliable 
+                  <div className='embedded-text-container'>
+                      <Form.Group
+                      className="mb-3"
+                      id='embedded-text'
+                      controlId="exampleForm.ControlTextarea2"
+                      >
+                          <Form.Label>Name: </Form.Label>
+                          <p>{name}</p>
+                      </Form.Group>
+                      <Form.Group
+                      className="mb-3"
+                      id='embedded-text'
+                      controlId="exampleForm.ControlTextarea2"
+                      >
+                          <Form.Label>Year: </Form.Label>
+                          <p>{year}</p>
+                      </Form.Group>
+                      <Form.Group
+                      className="mb-3"
+                      id='embedded-text'
+                      controlId="exampleForm.ControlTextarea2"
+                      >
+                          <Form.Label>Student ID: </Form.Label>
+                          <p>{studentid}</p>
+                      </Form.Group>
+                      <Form.Group
+                      className="mb-3"
+                      id='embedded-text'
+                      controlId="exampleForm.ControlTextarea2"
+                      >
+                          <Form.Label>Major: </Form.Label>
+                          <p>{department}</p>
+                      </Form.Group>
+                  </div>
+                )}
+              <Form.Group 
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea2"
+              >
+                  <Form.Label>Item Image</Form.Label>
+                  <Form.Control type="file" name="image" accept="image/*" />
+              </Form.Group>
             </div>
-            <div>
+            {/* <div>
                 <img src={image} alt=""/>
-            </div>
+            </div> */}
 
           </Form>
         </Modal.Body>

@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&family=Taviraj&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-family:"Noto Sans Thai", sans-serif ;
+}
+/* --------------------------------------top-btn----------------------------------------- */
+.top-btn{
+    width: 450px;
+    display: flex;
+    justify-content: space-between;
+}
+.top-btn button{
+    width: 220px;
+
+}
+.active {
+    background-color: blue;
+    color: white;
+  }
+.inactive {
+    background-color: red;
+    color: white;
+} 
+#addBTN{
+    border-radius: 30px 0 0 30px;
+    border: 2px solid #D8482F;
+    background-color: #D8482F;
+    color: white;
+}
+#delBTN{
+    border-radius:0 30px 30px 0;
+    background-color: #D8482F;
+    border: 2px solid #D8482F;
+    color: white;
+}
+
+/* -------------------------------------Add-Admin----------------------------------------- */
+.container-groub-AdminControl{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+.form-control-AddAdmin{
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom:2px; 
+}
+.form-control-AddAdmin label{
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.form-control-AddAdmin input{
+    display: block;
+    margin-bottom: 2px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width:450px;
+    padding: 10px;
+    font-size: 14px;
+}
+.Container-ADDAdmin{
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px 100px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 500px;
+}
+.Add-Admin{
+    background: #D8482F;
+    color: white;
+    cursor:pointer;
+    width:450px;
+    margin: 20px;
+    border: 2px solid #D8482F;
+    display: block;
+    padding:10px;
+    font-size: 16px;
+}
+/* -----------------------------------Delete-Admin------------------------------ */
+.Container-DELAdmin{
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px 100px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 500px;
+}

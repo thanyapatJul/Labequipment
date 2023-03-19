@@ -86,16 +86,26 @@
   }
 
 
-  /* ------------------------for test----------------------- */
-  .embedded-text-container{
 
-  }
+  /* ------------------------for test----------------------- */
+
   #embedded-text{
     display: flex;
     justify-content: center;
     align-items: left;
+    flex-direction:column ;
+
+    /* border: 2px solid green;  */
+  }
+  #embedded-text-Ava{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
-    /* border: 2px solid red; */
+
+  }
+  #embedded-text-Ava input{
+    margin-right: auto;
   }
   #check-box-ItemDetail{
     display: flex;
@@ -108,13 +118,4 @@
     justify-content: center;
     align-items: left;
     flex-direction: row;
-  }
-  .Form-Container img{
-    margin-left: 3rem;
-    padding:2rem ;
-    /* width: 300px; */
-    /* height: 400px; */
-  }
-  .mb-3{
-    /* width: 500px; */
   }

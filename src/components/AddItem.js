@@ -77,6 +77,7 @@ function Modal_popup() {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea2"
             >
+
             <Form.Label>Item Image</Form.Label>
                 <Form.Control type="file" name="image" accept="image/*" value={inputs.value} onChange={handleChange}/>
             </Form.Group>
