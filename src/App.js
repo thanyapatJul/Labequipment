@@ -20,8 +20,8 @@ function App(){
         <Route exact path='/login' element={<Login_page />} />
         <Route exact path='/register' element={<Register_page />} />
         <Route exact path='/equipment' element={<Equipment />} />
-        <Route exact path='/borrowing' element={<Borrowing />} />
-        <Route exact path='/admin' element={<AdminEquipmentPage />} />
+        <Route exact path='/Borrowing_user' element={<Borrowing />} />
+        <Route exact path='/admin_equipment' element={<AdminEquipmentPage />} />
 
       </Routes>
       

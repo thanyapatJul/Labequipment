@@ -1,8 +1,9 @@
-import React ,{useState,useEffect}from 'react'
+import React ,{useState}from 'react'
 import {Link,useNavigate} from "react-router-dom";
 import '../Styles/Login.css'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import jwt_decode from 'jwt-decode';
 
 function Login_page(){
     const navigate=useNavigate()
@@ -39,20 +40,20 @@ function Login_page(){
 
     fetch("http://localhost:5000/login", requestOptions)
     .then(response => response.json())
-
     .then(result => {
-        console.log(result)
         if (result.access_token) {
+            const decodedToken = jwt_decode(result.access_token);
+            const sid = decodedToken.sid;
+            localStorage.setItem('sid', sid);
+            localStorage.setItem('token', result.access_token);
+            localStorage.setItem('username', result.role);
             MySwal.fire({
                 html: <i>You have logged in!</i>,
                 icon: 'success'
-              }).then((value) => {
-            console.log(result)
-            localStorage.setItem('token',result.access_token)
-            localStorage.setItem('username',result.role)
-            navigate('/main')
-            window.location.reload();  //<== refres after logedin
-            })
+            }).then(() => {
+                navigate('/');
+                window.location.reload();
+            });
 
         }
         else {

@@ -1,104 +1,35 @@
-import React, { useState } from 'react';
-import CardDisplay from '../components/Card';
-import CategoryDropdown from '../components/Dropdown';
+import React , {useState,useEffect} from 'react'
+import CardDisplay from '../components/Card_user';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Equipment.css';
-import Button from 'react-bootstrap/Button';
+import { listeuqipmentUser } from '../function/function';
 
 function EquipmentPage() {
   const [equipmentData, setEquipmentData] = useState([
-    {
-      id: 1,
-      title: 'Laptop',
-      type: 'Electronics',
-      status: 'Available',
-      department: 'IT',
-      year: 2022,
-      location: 'Room A101',
-      studentid: '64XXXXXX',
-      image: '',
-      category: 'Hardware',
-    },
-    {
-      id: 2,
-      title: 'Microphone',
-      type: 'Audio',
-      status: 'Borrowed',
-      department: 'Media',
-      year: 2021,
-      location: 'Recording Studio',
-      studentid: '63XXXXXX',
-      image: '',
-      category: 'Hardware',
-    },
-    {
-      id: 3,
-      title: 'Treadmill',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Gym',
-      studentid: '642XXXXXX',
-      image: '',
-      category: 'Equipment',
-    },
-    {
-      id: 4,
-      title: 'Yoga mat',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Yoga studio',
-      studentid: '64X1XXXXX',
-      image: '',
-      category: 'Yoga',
-    },
-    {
-      id: 5,
-      title: 'Yoga mat',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2022,
-      location: 'Yoga studio',
-      studentid: '64X1XXXXX',
-      image: '',
-      category: 'Yoga',
-    },
-    {
-      id: 6,
-      title: 'Treadmill',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Gym',
-      studentid: '642XXXXXX',
-      image: '',
-      category: 'Equipment',
-    },
-    {
-      id: 7,
-      title: 'triple',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Gym',
-      studentid: '642XXXXXX',
-      image: '',
-      category: 'Equipment',
-    },
+
   ]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+  const loadData=()=>{
 
+    listeuqipmentUser()
+    .then(res=>{
+      console.log(res.data)
+      setEquipmentData(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
   const [selectedType, setSelectedType] = useState('All');
   
+  useEffect(() => {
+    loadData();
+    console.log(equipmentData); // This will still show the previous value of equipmentData
+  }, []);
+  
+
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -152,7 +83,7 @@ function EquipmentPage() {
               id={equipment.id}
               title={equipment.title}
               type={equipment.type}
-              status={equipment.status}
+              status={equipment.system}
               department={equipment.department}
               year={equipment.year}
               location={equipment.location}

@@ -6,6 +6,7 @@ import Additem from '../components/AddItem'
 
 function AdminEquipmentPage() {
   const [equipmentData, setEquipmentData] = useState([
+
     {
       id: 1,
       title: 'Laptop',
@@ -17,6 +18,7 @@ function AdminEquipmentPage() {
       studentid: '64XXXXXX',
       image: '',
       category: 'Hardware',
+      returndate :'12/03/22'
     },
     {
       id: 2,
@@ -29,6 +31,7 @@ function AdminEquipmentPage() {
       studentid: '63XXXXXX',
       image: '',
       category: 'Hardware',
+      returndate :'12/03/22'
     },
     {
       id: 3,
@@ -41,6 +44,7 @@ function AdminEquipmentPage() {
       studentid: '642XXXXXX',
       image: '',
       category: 'Equipment',
+      returndate :'12/03/22'
     },
     {
       id: 4,
@@ -53,6 +57,7 @@ function AdminEquipmentPage() {
       studentid: '64X1XXXXX',
       image: '',
       category: 'Yoga',
+      returndate :'12/03/22'
     },
     {
       id: 5,
@@ -65,6 +70,7 @@ function AdminEquipmentPage() {
       studentid: '64X1XXXXX',
       image: '',
       category: 'Yoga',
+      returndate :'12/03/22'
     },
     {
       id: 6,
@@ -77,6 +83,7 @@ function AdminEquipmentPage() {
       studentid: '642XXXXXX',
       image: '',
       category: 'Equipment',
+      returndate :'12/03/22'
     },
     {
       id: 7,
@@ -89,6 +96,7 @@ function AdminEquipmentPage() {
       studentid: '642XXXXXX',
       image: '',
       category: 'Equipment',
+      returndate :'12/03/22'
     },
   ]);
 
@@ -159,6 +167,7 @@ function AdminEquipmentPage() {
               image={equipment.image}
               category={equipment.category}
               studentid={equipment.studentid}
+              returndate={equipment.returndate}
             />
           </div>
         ))}

@@ -1,8 +1,4 @@
 import React from 'react'
-// import decoration from '../img/Group 37.svg';
-// import '../Styles/Home.css'
-// import {Link} from 'react-router-dom';
-import '../Styles/Home.css';
 import backgroundImage from '../img/KMUTNB_BG.jpg';
 import Footer from '../components/Footer';
 

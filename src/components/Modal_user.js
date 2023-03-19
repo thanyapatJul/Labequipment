@@ -3,17 +3,24 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {Link,useNavigate} from "react-router-dom";
 
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
   const [show, setShow] = useState(false);
-
+  const navigate=useNavigate()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const Islogin = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate('/login')
+    } else {
+      handleShow();
+    }
+  };
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={Islogin}>
         Borrow
       </Button>
 

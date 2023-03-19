@@ -7,7 +7,7 @@ import {CardActionArea, CardActions } from '@mui/material';
 import Detailbtn from '../components/Admin_ItemDetail'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid }) {
+export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid ,returndate }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -15,7 +15,7 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
           component="img"
           height="140"
           image="thisis image"
-          alt="some image"
+          alt={image}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -28,6 +28,9 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
               </Row>
               <Row style={{justifyContent: 'center', alignItems: 'center'}}>
                 Borrowby :{studentid}  
+              </Row>
+              <Row style={{justifyContent: 'center', alignItems: 'center'}}>
+                Return date :{returndate}  
               </Row>
             </Col>
           </Typography>

@@ -19,6 +19,9 @@
     .Equipment_header > * {
       margin-bottom: 10px;
     }
+    .Equipment_content {
+      align-items: stretch;
+    }
   }
   
   @media only screen and (min-width: 768px) {
@@ -27,7 +30,7 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-left: 5%;
-      margin-right: 3%;
+      margin-right: 13%;
     }
   
     .Equipment_content > * {
@@ -71,38 +74,4 @@
     outline: none;
     border: 1px solid #2196F3;
     box-shadow: 0 0 5px #2196F3;
-  }
-
-
-  /* ------------------------for test----------------------- */
-  .embedded-text-container{
-
-  }
-  #embedded-text{
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: row;
-    /* border: 2px solid red; */
-  }
-  #check-box-ItemDetail{
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
-  }
-  .Form-Container{
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: row;
-  }
-  .Form-Container img{
-    margin-left: 3rem;
-    padding:2rem ;
-    /* width: 300px; */
-    /* height: 400px; */
-  }
-  .mb-3{
-    /* width: 500px; */
   }
