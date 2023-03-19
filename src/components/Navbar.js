@@ -35,7 +35,7 @@ function Navbar() {
                 <div className='rightSide' >
                   <Link to='/'> Home</Link>
                   <Link to='/equipment'> Equipment</Link>
-                  <Link to='/borrowing'> Borrow List</Link>
+                  <Link to='/Borrowing_user'> Borrow List</Link>
                   <Link onClick={logout} to='/login'>  Logout   </Link>
                   <button onClick={toggleNavbar}>
                   <ReorderIcon />

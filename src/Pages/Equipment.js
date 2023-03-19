@@ -5,13 +5,21 @@ import '../Styles/Equipment.css';
 import { listeuqipmentUser } from '../function/function';
 
 function EquipmentPage() {
+
+// Dis const use in loaddata it's list of json and display this in Displaycard 
   const [equipmentData, setEquipmentData] = useState([
 
   ]);
 
+// set category defult as '' 
   const [searchQuery, setSearchQuery] = useState('');
+
+// set category defult as ALL 
   const [selectedCategory, setSelectedCategory] = useState('All');
 
+// axios POST to database and set equipmentData 
+
+// backend api list of json
   const loadData=()=>{
 
     listeuqipmentUser()
@@ -22,33 +30,44 @@ function EquipmentPage() {
       console.log(err)
     })
   }
+
+  //  set selected type default as All 
   const [selectedType, setSelectedType] = useState('All');
   
+  //  loading data 
   useEffect(() => {
     loadData();
     console.log(equipmentData); // This will still show the previous value of equipmentData
   }, []);
   
 
+  // Get data from search bar and changes.
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
+  // Get data from dropdown cate and changes.
   const handleCategorySelect = (selectedCategory) => {
     setSelectedCategory(selectedCategory);
     console.log(selectedCategory);
   };
+  // Get data from dropdown type and changes.
   const handleTypeSelect = (selectedType) => {
     setSelectedType(selectedType);
     console.log(selectedType);
   };
 
+  // filter displayed card by dropdown 
   const filteredEquipmentData = equipmentData.filter((equipment) => {
-    if (selectedCategory === 'All') {
+    if (selectedCategory === 'All' && selectedType ==='All') {
       return true; // include all equipment if "All" category is selected
-    } else {
-      return equipment.category === selectedCategory; // only include equipment that matches selected category
+    } else if (selectedCategory === 'All'&& selectedType !=='All'){
+      return equipment.type===selectedType; 
+    } else if (selectedCategory !== 'All'&& selectedType ==='All'){
+      return equipment.category===selectedCategory; 
+    }else {
+      return equipment.category === selectedCategory;
     }
-  }).filter((equipment) =>
+  }).filter((equipment) => 
     equipment.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -57,14 +76,14 @@ function EquipmentPage() {
       <div className="Equipment_header">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
-          <option value='Equipment'>Equipment</option>
-          <option value='Yoga'>Yoga</option>
+          <option value='Electrical source'>Electrical source</option>
+          <option value='Measurment'>Measurment</option>
           <option value='Hardware'>Hardware</option>
         </select>
         <select value={selectedType} onChange={(e) => handleTypeSelect(e.target.value)}>
           <option value='All'>All-type</option>
-          <option value='Equipment'>Equipment</option>
-          <option value='Yoga'>Yoga</option>
+          <option value='Multimeter'>Multimeter</option>
+          <option value='Generator'>Generator</option>
           <option value='Hardware'>Hardware</option>
         </select>
         <input
