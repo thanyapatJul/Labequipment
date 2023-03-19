@@ -50,9 +50,7 @@ function Navbar() {
                   <button onClick={toggleNavbar}>
                   <ReorderIcon />
                   </button>
-                </div>
-                
-                
+                </div>     
         }
     </div>
   );

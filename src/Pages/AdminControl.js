@@ -24,22 +24,11 @@ function AdminControl() {
 
   const handleAddAdminClick = () => {
       setIsAddAdmin(true);//
-      //setIsDELAdmin(false);
-      //setActive(true);
-      //
-
   };
 
   const handleDeleteAdminClick = () => {
-        //setIsDELAdmin(true);//
         setIsAddAdmin(false);
   };
-  //--------------hold color in btn
-  // const [isActive, setActive] = useState(false);
-
-  // const toggleActive = () => {
-  //   setActive(isActive);
-  // };
 
   return (
     <div className='container-groub-AdminControl'>
