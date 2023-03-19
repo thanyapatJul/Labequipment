@@ -19,6 +19,9 @@
     .Equipment_header > * {
       margin-bottom: 10px;
     }
+    .Equipment_content {
+      align-items: stretch;
+    }
   }
   
   @media only screen and (min-width: 768px) {
@@ -27,7 +30,7 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       margin-left: 5%;
-      margin-right: 3%;
+      margin-right: 13%;
     }
   
     .Equipment_content > * {
@@ -72,5 +75,3 @@
     border: 1px solid #2196F3;
     box-shadow: 0 0 5px #2196F3;
   }
-
-

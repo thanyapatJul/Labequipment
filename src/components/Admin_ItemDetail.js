@@ -17,7 +17,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
 
   return (
     <>
-      <Button variant="primary" onClick={handleClose}>
+      <Button variant="danger" onClick={handleClose}>
         Delete
       </Button>
       <Button variant="primary" onClick={handleShow}>
