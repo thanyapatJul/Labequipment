@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { listadditemadmin } from '../function/function';
 
 
 function Modal_popup() {
@@ -13,13 +14,32 @@ function Modal_popup() {
   const handleClose = () => setShow(false);
 
   const handleShow = () => setShow(true);
-
+  
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}))
     console.log(inputs)
-}
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  
+    var formData = new FormData();
+    formData.append("title", inputs.title);
+    formData.append("eqm_id", inputs.eqm_id);
+    formData.append("eqm_type", inputs.eqm_type);
+    formData.append("category", inputs.category);
+    formData.append("location", inputs.location);
+  
+
+    var requestOptions = {
+    method: 'POST',
+    body: formData,
+    redirect: 'follow'
+    };
+    fetch('http://localhost:5000/'+localStorage.getItem('admin_id')+'/admin_equipment', requestOptions)
+    .then(response => response.json())
+  }
   return (
     <>
       <Button variant="success" onClick={handleShow}>
@@ -38,7 +58,7 @@ function Modal_popup() {
             >
               <Form.Label>Item Title</Form.Label>
               <Form.Control type="text" name="title" 
-              placeholder="Insert Item Title" value={inputs.value} onChange={handleChange}/>
+              placeholder="Insert Item Title" value={inputs.title || ""} onChange={handleChange}/>
 
             </Form.Group>
             <Form.Group
@@ -46,7 +66,7 @@ function Modal_popup() {
               controlId="exampleForm.ControlTextarea2"
             >
               <Form.Label>Item Id</Form.Label>
-              <Form.Control type="text" name="itemid" placeholder="Insert ItemId " value={inputs.value} onChange={handleChange}/>
+              <Form.Control type="text" name="eqm_id" placeholder="Insert ItemId " value={inputs.eqm_id || ""} onChange={handleChange}/>
 
             </Form.Group>
             <Form.Group
@@ -54,7 +74,7 @@ function Modal_popup() {
               controlId="exampleForm.ControlTextarea2"
             >
               <Form.Label>Type</Form.Label>
-              <Form.Control type="text" name="type" placeholder="Insert Type" value={inputs.value} onChange={handleChange} />
+              <Form.Control type="text" name="eqm_type" placeholder="Insert Type" value={inputs.eqm_type || ""} onChange={handleChange} />
 
             </Form.Group>
             <Form.Group
@@ -62,7 +82,7 @@ function Modal_popup() {
               controlId="exampleForm.ControlTextarea2"
             >
               <Form.Label>Category</Form.Label>
-              <Form.Control type="text" name="category" placeholder=" Insert Category" value={inputs.value} onChange={handleChange} />
+              <Form.Control type="text" name="category" placeholder=" Insert Category" value={inputs.category || ""} onChange={handleChange} />
 
             </Form.Group>
             <Form.Group
@@ -70,7 +90,7 @@ function Modal_popup() {
               controlId="exampleForm.ControlTextarea2"
             >
               <Form.Label>Location</Form.Label>
-              <Form.Control type="text" name="location" placeholder="Insert Location" value={inputs.value} onChange={handleChange} />
+              <Form.Control type="text" name="location" placeholder="Insert Location" value={inputs.location ||""} onChange={handleChange} />
 
             </Form.Group>
             <Form.Group 
@@ -87,7 +107,7 @@ function Modal_popup() {
           <Button variant="secondary" onClick={handleClose}>
             Back
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSubmit}>
             Add
           </Button>
         </Modal.Footer>
