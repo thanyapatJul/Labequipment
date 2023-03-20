@@ -8,14 +8,22 @@ import Detailbtn from '../components/Admin_ItemDetail'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid ,returndate }) {
+  const byteCharacters = atob(image);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  const byteArray = new Uint8Array(byteNumbers);
+  const blob = new Blob([byteArray], {type: 'image/jpeg'});
+  const imageUrl = URL.createObjectURL(blob);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="thisis image"
-          alt={image}
+          image={imageUrl}
+          alt={imageUrl}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

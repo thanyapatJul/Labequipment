@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Navbar from "./components/Navbar";
 import Home from './Pages/Home'
@@ -23,7 +23,7 @@ function App(){
         <Route exact path='/equipment' element={<Equipment />} />
         <Route exact path='/Borrowing_user' element={<Borrowing />} />
         <Route exact path='/admin_equipment' element={<AdminEquipmentPage />} />
-
+        <Route exact path='/admin_control' element={<AdminControl />} />
       </Routes>
    </Router>
   </div>
