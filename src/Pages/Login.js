@@ -3,6 +3,7 @@ import {Link,useNavigate} from "react-router-dom";
 import '../Styles/Login.css'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import jwt_decode from 'jwt-decode';
 
 function Login_page(){
     const navigate=useNavigate()
@@ -23,9 +24,9 @@ function Login_page(){
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Cookie", "jwt=token");
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    // myHeaders.append("Cookie", "jwt=token");
 
     var formdata = new FormData();
     formdata.append("sid", inputs.sid);
@@ -41,7 +42,9 @@ function Login_page(){
     .then(response => response.json())
     .then(result => {
         if (result.access_token) {
-            localStorage.setItem('sid', result.id);
+            const decodedToken = jwt_decode(result.access_token);
+            const sid = decodedToken.sid;
+            localStorage.setItem('sid', sid);
             localStorage.setItem('token', result.access_token);
             localStorage.setItem('username', result.role);
             MySwal.fire({
