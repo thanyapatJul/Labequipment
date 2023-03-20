@@ -9,16 +9,31 @@ import Col from 'react-bootstrap/Col';
 import Modal from '../components/Modal_user'
 import { width } from '@mui/system';
 import { left } from 'holderjs';
+
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid}) {
+  
+// convert base 64 to url
+  const byteCharacters = atob(image);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  const byteArray = new Uint8Array(byteNumbers);
+  const blob = new Blob([byteArray], {type: 'image/jpeg'});
+  const imageUrl = URL.createObjectURL(blob);
+
+
+
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
+            component="img"
+            height="140"
+            image={imageUrl}
+            alt="image"
+          />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" >
             <Col><Row style={{justifyContent: 'center', alignItems: 'center'}}>{title}</Row></Col>
