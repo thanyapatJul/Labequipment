@@ -102,7 +102,7 @@ function EquipmentPage() {
               id={equipment.id}
               title={equipment.title}
               type={equipment.type}
-              status={equipment.status}
+              status={equipment.system}
               department={equipment.department}
               year={equipment.year}
               location={equipment.location}

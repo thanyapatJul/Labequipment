@@ -1,33 +1,75 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import CardDisplay from '../components/Card_return';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
-import { listeuqipmentBorrow } from '../function/function';
+
 
 function Borrowing() {
   const [borrowingData, setborrowingData] = useState([
+    {
+      id: 1, 
+      title: 'Laptop',
+      type: 'Electronics',
+      status: 'Available',
+      image: 'https://picsum.photos/id/1/200/300',
+      category: 'Hardware',
+    },
+    {
+      id: 2,
+      title: 'Microphone',
+      type: 'Audio',
+      status: 'Borrowed',
+      image: 'https://picsum.photos/id/2/200/300',
+      category: 'Hardware',
+    },
+    {
+      id: 3,
+      title: 'Treadmill',
+      type: 'Fitness',
+      status: 'Available',
+      image: 'https://picsum.photos/id/3/200/300',
+      category: 'Equipment',
+    },
+    {
+      id: 4,
+      title: 'Treadmill',
+      type: 'Fitness',
+      status: 'Available',
+      image: 'https://picsum.photos/id/4/200/300',
+      category: 'Yoga',
+    },
+    {
+      id: 5,
+      title: 'Yoga mat',
+      type: 'Fitness',
+      status: 'Available',
+      image: 'https://picsum.photos/id/4/200/300',
+      category: 'Yoga',
+    },
+    {
+      id: 6,
+      title: 'Treadmill',
+      type: 'Fitness',
+      status: 'Available',
+      image: 'https://picsum.photos/id/4/200/300',
+      category: 'Equipment',
+    },
+    {
+      id: 7,
+      title: 'triple',
+      type: 'Fitness',
+      status: 'Available',
+      image: 'https://picsum.photos/id/3/200/300',
+      category: 'Equipment',
+    },
   ]);
-  // backend api list of json
-  const loadData=()=>{
-
-    listeuqipmentBorrow()
-    .then(res=>{
-      console.log(res.data)
-      setborrowingData(res.data)
-    }).catch(err=>{
-      console.log(err)
-    })
-  }
+  
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  useEffect(() => {
-    loadData();
-    console.log(borrowingData); // This will still show the previous value of equipmentData
-  }, []);
-  
+
   const [selectedType, setSelectedType] = useState('All');
   
   const handleSearch = (event) => {
@@ -57,7 +99,7 @@ function Borrowing() {
       <div className="Borrow_header ">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
-          <option value='Equåipment'>Equipment</option>
+          <option value='Equipment'>Equipment</option>
           <option value='Yoga'>Yoga</option>
           <option value='Hardware'>Hardware</option>
         </select>
