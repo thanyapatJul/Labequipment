@@ -31,6 +31,23 @@ function AdminControl() {
         setIsAddAdmin(false);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  
+    var formData = new FormData();
+    formData.append("delete_id", inputs.delete_id); //Dont know
+  
+
+    var requestOptions = {
+    method: 'DELETE',
+    body: formData,
+    redirect: 'follow'
+    };
+    fetch('http://localhost:5000/'+localStorage.getItem('admin_id')+'/admin_control/delete_admin/', requestOptions)
+    .then(response => response.json())
+  }
+
+
   return (
     <div className='container-groub-AdminControl'>
       {isAddAdmin ? (
@@ -76,10 +93,10 @@ function AdminControl() {
             <div className='form-control-AddAdmin'>
                 <label>
                     Admin ID:
-                    <input type="text" value={deleteAdminId} onChange={(e) => setDeleteAdminId(e.target.value)} />
+                    <input type="text" value={inputs.delete_id} onChange={(e) => setDeleteAdminId(e.target.value)} />
                 </label>
             </div>
-          <button className='Log-in-btn' type="submit">Delete Admin</button>
+          <button className='Log-in-btn' type="submit" onClick={handleSubmit}>Delete Admin</button>
         </form>
       )}
     </div>
