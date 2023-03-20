@@ -1,111 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import CardDisplay from '../components/Admin_eqm_card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/AdminEquipment.css';
 import Additem from '../components/AddItem'
+import { listeuqipmentAdmin } from '../function/function';
 
 function AdminEquipmentPage() {
-  const [equipmentData, setEquipmentData] = useState([
-
-    {
-      id: 1,
-      title: 'Laptop',
-      type: 'Electronics',
-      status: 'Available',
-      department: 'IT',
-      year: 2022,
-      location: 'Room A101',
-      studentid: '64XXXXXX',
-      image: '',
-      category: 'Hardware',
-      returndate :'12/03/22'
-    },
-    {
-      id: 2,
-      title: 'Microphone',
-      type: 'Audio',
-      status: 'Borrowed',
-      department: 'Media',
-      year: 2021,
-      location: 'Recording Studio',
-      studentid: '63XXXXXX',
-      image: '',
-      category: 'Hardware',
-      returndate :'12/03/22'
-    },
-    {
-      id: 3,
-      title: 'Treadmill',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Gym',
-      studentid: '642XXXXXX',
-      image: '',
-      category: 'Equipment',
-      returndate :'12/03/22'
-    },
-    {
-      id: 4,
-      title: 'Yoga mat',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Yoga studio',
-      studentid: '64X1XXXXX',
-      image: '',
-      category: 'Yoga',
-      returndate :'12/03/22'
-    },
-    {
-      id: 5,
-      title: 'Yoga mat',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2022,
-      location: 'Yoga studio',
-      studentid: '64X1XXXXX',
-      image: '',
-      category: 'Yoga',
-      returndate :'12/03/22'
-    },
-    {
-      id: 6,
-      title: 'Treadmill',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Gym',
-      studentid: '642XXXXXX',
-      image: '',
-      category: 'Equipment',
-      returndate :'12/03/22'
-    },
-    {
-      id: 7,
-      title: 'triple',
-      type: 'Fitness',
-      status: 'Available',
-      department: 'Fitness',
-      year: 2021,
-      location: 'Gym',
-      studentid: '642XXXXXX',
-      image: '',
-      category: 'Equipment',
-      returndate :'12/03/22'
-    },
-  ]);
+  const [equipmentData, setEquipmentData] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-
   const [selectedType, setSelectedType] = useState('All');
-  
+
+  const loadData=()=>{
+
+    listeuqipmentAdmin()
+    .then(res=>{
+      console.log(res.data)
+      setEquipmentData(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+
+  useEffect(() => {
+    loadData();
+    console.log(equipmentData); // This will still show the previous value of equipmentData
+  }, []);
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -167,7 +89,7 @@ function AdminEquipmentPage() {
               image={equipment.image}
               category={equipment.category}
               studentid={equipment.studentid}
-              returndate={equipment.returndate}
+              returndate={equipment.expiredate}
             />
           </div>
         ))}

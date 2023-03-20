@@ -6,10 +6,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Link,useNavigate} from "react-router-dom";
 
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
+  const [inputs,setInputs]=useState([])
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+    console.log(inputs)
+}
   const [show, setShow] = useState(false);
+
   const navigate=useNavigate()
+
   const handleClose = () => setShow(false);
+
   const handleShow = () => setShow(true);
+
   const Islogin = () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -34,17 +46,23 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control
+                name='email'
                 type="email"
                 placeholder="StudentID@kmutnb.ac.th"
-                autoFocus
-              />
+                value={inputs.email || ""} 
+                onChange={handleChange}/>
             </Form.Group>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Borrow date</Form.Label>
-              <Form.Control type="date" name="dob" placeholder="Date of Birth" />
+              <Form.Control 
+              type="date" 
+              name="borrowdate"
+              placeholder="Date " 
+              value={inputs.borrowdate || ""} 
+              onChange={handleChange}/>
 
             </Form.Group>
           </Form>

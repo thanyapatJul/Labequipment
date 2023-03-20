@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import  '../Styles/AdminControl.css';
 
 function AdminControl() {
+  
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
   const [name, setName] = useState('');
