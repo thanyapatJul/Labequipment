@@ -64,14 +64,17 @@ function AdminControl() {
       );
       alert(response.data.msg);
     } catch (error) {
-      console.log(error);
-      if (401) {
+      if (error.response.status === 401) {
         alert('Please log in first!');
+        return;
+      } else if (error.response.data.msg) {
+        alert(`Failed to add admin. ${error.response.data.msg}`);
         return;
       }
       alert('Failed to add admin.');
     }
 };
+
 const handleSubmit_delete_bt = async (event) => {
   event.preventDefault();
 
@@ -93,11 +96,14 @@ const handleSubmit_delete_bt = async (event) => {
     alert(response.data.msg);
   } catch (error) {
     console.log(error);
-    if (401) {
+    if (error.response.status === 401) {
       alert('Please log in first!');
       return;
     }
-    alert('Failed to delete admin.');
+    else {
+      alert('Failed to delete admin.');
+      return;
+    }
   }
 };
 // const handleSubmit_delete_bt = async (event) => {
