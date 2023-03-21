@@ -44,6 +44,7 @@ function Login_page(){
             localStorage.setItem('sid', result.id);
             localStorage.setItem('token', result.access_token);
             localStorage.setItem('username', result.role);
+            console.log("username",result.role);
             MySwal.fire({
                 html: <i>You have logged in!</i>,
                 icon: 'success'
