@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import  '../Styles/AdminControl.css';
+import axios from "axios";
 
 function AdminControl() {
   
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
+  const [inputs, setInputs] = useState({});
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [adminId, setAdminId] = useState('');
@@ -31,21 +33,58 @@ function AdminControl() {
         setIsAddAdmin(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit_admin_bt = async (event) => {
     event.preventDefault();
+    // Code to submit add admin form data to the server
+    console.log(`Add admin form submitted with data: ${name}, ${lastName}, ${adminId}, ${password}`);
+      // Create a new FormData object
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('surname', lastName);
+    formData.append('sid', adminId);
+    formData.append('password', password);
+    
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Please log in first!');
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_control/add_admin',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+          },
+        }
+      );
+      alert(response.data.msg);
+    } catch (error) {
+      console.log(error);
+      alert('Failed to add admin.');
+    }
+};
+
+
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
   
-    var formData = new FormData();
-    formData.append("delete_id", inputs.delete_id); //Dont know
+  //   var formData = new FormData();
+  //   formData.append("delete_id", inputs.delete_id); //Dont know
   
 
-    var requestOptions = {
-    method: 'DELETE',
-    body: formData,
-    redirect: 'follow'
-    };
-    fetch('http://localhost:5000/'+localStorage.getItem('admin_id')+'/admin_control/delete_admin/', requestOptions)
-    .then(response => response.json())
-  }
+  //   var requestOptions = {
+  //   method: 'DELETE',
+  //   body: formData,
+  //   redirect: 'follow'
+  //   };
+  //   fetch('http://localhost:5000/'+localStorage.getItem('sid')+'/admin_control/delete_admin', requestOptions)
+  //   .then(response => response.json())
+  // }
 
 
   return (
@@ -81,7 +120,7 @@ function AdminControl() {
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
             </div>
-          <button className='Add-Admin' type="submit">Add Admin</button>
+          <button className='Add-Admin' type="submit" onClick={handleSubmit_admin_bt}>Add Admin</button>
         </form>
       ) : (
         <form className='Container-DELAdmin' onSubmit={handleDeleteAdminSubmit}>
@@ -96,7 +135,7 @@ function AdminControl() {
                     <input type="text" value={inputs.delete_id} onChange={(e) => setDeleteAdminId(e.target.value)} />
                 </label>
             </div>
-          <button className='Log-in-btn' type="submit" onClick={handleSubmit}>Delete Admin</button>
+          {/* <button className='Log-in-btn' type="submit" onClick={handleSubmit}>Delete Admin</button> */}
         </form>
       )}
     </div>
