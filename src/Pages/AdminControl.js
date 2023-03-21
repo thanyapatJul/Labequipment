@@ -3,7 +3,7 @@ import  '../Styles/AdminControl.css';
 import axios from "axios";
 
 function AdminControl() {
-  
+  const [inputs, setInputs] = useState({});
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
   const [inputs, setInputs] = useState({});
