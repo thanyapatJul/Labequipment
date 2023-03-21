@@ -6,12 +6,12 @@ function AdminControl() {
   const [inputs, setInputs] = useState({});
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
-  const [inputs, setInputs] = useState({});
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
   const [deleteAdminId, setDeleteAdminId] = useState('');
+  const [depart, setDepart] = useState('');
 
   const handleAddAdminSubmit = (event) => {
     event.preventDefault();
@@ -36,13 +36,15 @@ function AdminControl() {
   const handleSubmit_admin_bt = async (event) => {
     event.preventDefault();
     // Code to submit add admin form data to the server
-    console.log(`Add admin form submitted with data: ${name}, ${lastName}, ${adminId}, ${password}`);
+    console.log(`Add admin form submitted with data: ${name}, ${lastName}, ${adminId}, ${password} ,${depart}`);
       // Create a new FormData object
     const formData = new FormData();
     formData.append('name', name);
     formData.append('surname', lastName);
+    formData.append('depart','')
     formData.append('sid', adminId);
     formData.append('password', password);
+    formData.append('depart', depart);
     
     const token = localStorage.getItem('token');
     if (!token) {
@@ -70,21 +72,7 @@ function AdminControl() {
 
 
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
   
-  //   var formData = new FormData();
-  //   formData.append("delete_id", inputs.delete_id); //Dont know
-  
-
-  //   var requestOptions = {
-  //   method: 'DELETE',
-  //   body: formData,
-  //   redirect: 'follow'
-  //   };
-  //   fetch('http://localhost:5000/'+localStorage.getItem('sid')+'/admin_control/delete_admin', requestOptions)
-  //   .then(response => response.json())
-  // }
 
 
   return (
@@ -119,6 +107,7 @@ function AdminControl() {
                     Password:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
+                <input type="text" value={depart} onChange={(e) => setDepart(e.target.value)} />
             </div>
           <button className='Add-Admin' type="submit" onClick={handleSubmit_admin_bt}>Add Admin</button>
         </form>
