@@ -16,13 +16,13 @@ function AdminControl() {
   const handleAddAdminSubmit = (event) => {
     event.preventDefault();
     // Code to submit add admin form data to the server
-    console.log(`Add admin form submitted with data: ${name}, ${lastName}, ${adminId}, ${password}`);
+    // console.log(`Add admin form submitted with data: ${name}, ${lastName}, ${adminId}, ${password}`);
   };
 
   const handleDeleteAdminSubmit = (event) => {
     event.preventDefault();
     // Code to submit delete admin form data to the server
-    console.log(`Delete admin form submitted with data: ${deleteId}`);
+    // console.log(`Delete admin form submitted with data: ${deleteId}`);
   };
 
   const handleAddAdminClick = () => {
@@ -45,6 +45,7 @@ function AdminControl() {
     formData.append('password', password);
     
     const token = localStorage.getItem('token');
+    
     if (!token) {
       alert('Please log in first!');
       return;
@@ -64,6 +65,10 @@ function AdminControl() {
       alert(response.data.msg);
     } catch (error) {
       console.log(error);
+      if (401) {
+        alert('Please log in first!');
+        return;
+      }
       alert('Failed to add admin.');
     }
 };
