@@ -13,14 +13,14 @@ import { left } from 'holderjs';
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid}) {
   
 // convert base 64 to url
-  // const byteCharacters = atob(image);
-  // const byteNumbers = new Array(byteCharacters.length);
-  // for (let i = 0; i < byteCharacters.length; i++) {
-  //   byteNumbers[i] = byteCharacters.charCodeAt(i);
-  // }
-  // const byteArray = new Uint8Array(byteNumbers);
-  // const blob = new Blob([byteArray], {type: 'image/jpeg'});
-  // const imageUrl = URL.createObjectURL(blob);
+  const byteCharacters = atob(image);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  const byteArray = new Uint8Array(byteNumbers);
+  const blob = new Blob([byteArray], {type: 'image/jpeg'});
+  const imageUrl = URL.createObjectURL(blob);
 
 
 
@@ -31,7 +31,7 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
         <CardMedia
             component="img"
             height="140"
-            // image={imageUrl}
+            image={imageUrl}
             alt="image"
           />
         <CardContent>

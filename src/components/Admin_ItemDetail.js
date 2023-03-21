@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // ------------for test
 import '../Styles/AdminEquipment.css';
 // ------------for test
-
+import {delteItem} from '../function/function'
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -15,9 +15,21 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
 
+
+
+  const handleSubmit=()=>{
+    setShow(false)
+    console.log(id)
+    delteItem(id)
+    .then(res=>{
+      console.log(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
   return (
     <>
-      <Button variant="danger" onClick={handleClose}>
+      <Button variant="danger" onClick={handleSubmit}>
         Delete
       </Button>
       <Button variant="primary" onClick={handleShow}>

@@ -3,13 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { listadditemadmin } from '../function/function';
+import { AddItem } from '../function/function';
 
 
 function Modal_popup() {
   const [show, setShow] = useState(false);
   
   const [inputs, setInputs] = useState({});
+
 
   const handleClose = () => setShow(false);
 
@@ -21,24 +22,21 @@ function Modal_popup() {
     setInputs(values => ({...values, [name]: value}))
     console.log(inputs)
   }
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  
-    var formData = new FormData();
-    formData.append("title", inputs.title);
-    formData.append("eqm_id", inputs.eqm_id);
-    formData.append("eqm_type", inputs.eqm_type);
-    formData.append("category", inputs.category);
-    formData.append("location", inputs.location);
-  
 
-    var requestOptions = {
-    method: 'POST',
-    body: formData,
-    redirect: 'follow'
-    };
-    fetch('http://localhost:5000/'+localStorage.getItem('admin_id')+'/admin_equipment', requestOptions)
-    .then(response => response.json())
+  const handleSubmit=()=>{
+    var formdata = new FormData();
+    formdata.append("title", inputs.title);
+    formdata.append("eqm_id", inputs.eqm_id);
+    formdata.append("eqm_type", inputs.eqm_type);
+    formdata.append("category", inputs.category);
+    formdata.append("location", inputs.location);
+    console.log(formdata)
+    AddItem(formdata)
+    .then(res=>{
+      console.log(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
   }
   return (
     <>

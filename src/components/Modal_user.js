@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link,useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid }) {
   const [inputs,setInputs]=useState([])
