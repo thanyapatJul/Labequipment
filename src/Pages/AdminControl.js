@@ -93,6 +93,10 @@ const handleSubmit_delete_bt = async (event) => {
     alert(response.data.msg);
   } catch (error) {
     console.log(error);
+    if (401) {
+      alert('Please log in first!');
+      return;
+    }
     alert('Failed to delete admin.');
   }
 };
