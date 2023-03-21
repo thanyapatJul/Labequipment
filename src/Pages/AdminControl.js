@@ -3,15 +3,15 @@ import  '../Styles/AdminControl.css';
 import axios from "axios";
 
 function AdminControl() {
-  const [inputs, setInputs] = useState({});
+  
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
-  const [inputs, setInputs] = useState({});
+ 
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
-  const [deleteAdminId, setDeleteAdminId] = useState('');
+  const [deleteId, setDeleteAdminId] = useState('');
 
   const handleAddAdminSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +22,7 @@ function AdminControl() {
   const handleDeleteAdminSubmit = (event) => {
     event.preventDefault();
     // Code to submit delete admin form data to the server
-    console.log(`Delete admin form submitted with data: ${deleteAdminId}`);
+    console.log(`Delete admin form submitted with data: ${deleteId}`);
   };
 
   const handleAddAdminClick = () => {
@@ -67,25 +67,59 @@ function AdminControl() {
       alert('Failed to add admin.');
     }
 };
+const handleSubmit_delete_bt = async (event) => {
+  event.preventDefault();
 
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert('Please log in first!');
+    return;
+  }
 
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
+  try {
+    const response = await axios.delete(
+      `http://localhost:5000/${localStorage.getItem('sid')}/admin_control/delete_admin/${deleteId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    alert(response.data.msg);
+  } catch (error) {
+    console.log(error);
+    alert('Failed to delete admin.');
+  }
+};
+// const handleSubmit_delete_bt = async (event) => {
+//   event.preventDefault();
   
-  //   var formData = new FormData();
-  //   formData.append("delete_id", inputs.delete_id); //Dont know
-  
+//   const token = localStorage.getItem('token');
+//     if (!token) {
+//       alert('Please log in first!');
+//       return;
+//     }
 
-  //   var requestOptions = {
-  //   method: 'DELETE',
-  //   body: formData,
-  //   redirect: 'follow'
-  //   };
-  //   fetch('http://localhost:5000/'+localStorage.getItem('sid')+'/admin_control/delete_admin', requestOptions)
-  //   .then(response => response.json())
-  // }
+//     try {
+//       const formData = new FormData();
+//       formData.append('delete_id', deleteId);
 
+//       const response = await axios.delete(
+//         `http://localhost:5000/${localStorage.getItem('sid')}/admin_control/delete_admin`,
+//         formData,
+//         {
+//           headers: {
+//             'Authorization': `Bearer ${token}`,
+//             'Content-Type': 'multipart/form-data'
+//           }
+//         }
+//       );
+//       alert(response.data.msg);
+//     } catch (error) {
+//       console.log(error);
+//       alert('Failed to delete admin.');
+//     }
+// };
 
   return (
     <div className='container-groub-AdminControl'>
@@ -132,10 +166,10 @@ function AdminControl() {
             <div className='form-control-AddAdmin'>
                 <label>
                     Admin ID:
-                    <input type="text" value={inputs.delete_id} onChange={(e) => setDeleteAdminId(e.target.value)} />
+                    <input type="text" value={deleteId} onChange={(e) => setDeleteAdminId(e.target.value)} />
                 </label>
             </div>
-          {/* <button className='Log-in-btn' type="submit" onClick={handleSubmit}>Delete Admin</button> */}
+          <button className='Log-in-btn' type="submit" onClick={handleSubmit_delete_bt}>Delete Admin</button>
         </form>
       )}
     </div>
