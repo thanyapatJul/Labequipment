@@ -6,13 +6,53 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // ------------for test
 import '../Styles/AdminEquipment.css';
 // ------------for test
+
 import {delteItem} from '../function/function'
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
   const [show, setShow] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  
+  const [isChecked, setIsChecked] = useState({
+    name: false,
+    year: false,
+    department: false
+  });
+
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
+  const [sid, setSid] = useState('');
+  const [name, setName] = useState('');
+  const [year, setYear] = useState('');
+  const [department, setDepartment] = useState('');
+  
+  const [name_Avaliable, setName_Avaliable] = useState('');
+  const [year_Avaliable, setYear_Avaliable] = useState('');
+  const [department_Avaliable, setDepartment_Avaliable] = useState('');
+
+  const [borrowDate, setBorrowDate] = useState('');
+  const [returnDate, setReturnDate] = useState('');
+
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!isChecked.name) {
+    setName('Sopon');
+    setYear('4')
+    setDepartment('teacher')}
+  };
+
+  // JavaScript function to handle form submission
+  const handleresetid = (e) => {
+    e.preventDefault();
+    if (!isChecked.name) {
+      setName('');
+      setYear('')
+      setDepartment('')}
+   
+  }
+
+
 
 
 
@@ -51,13 +91,16 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 placeholder="Insert Item Title" />
 
                 </Form.Group>
+
                 <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea2"
                 >
                 <Form.Label>Item Id : {id}</Form.Label>
+
                 <Form.Control type="text" name="dob" placeholder="Insert ItemId " />
                 </Form.Group>
+
                 <Form.Group className="mb-3" id='check-box-ItemDetail' controlId="exampleForm.ControlCheckbox1">
                     <Form.Label>Status:</Form.Label>
                     <Form.Check
@@ -81,107 +124,55 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 <Form.Control type="text" name="dob" placeholder="Insert Type" />
 
                 </Form.Group>
-                <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea2"
-                >
-                <Form.Label>Category : {category}</Form.Label>
-                <Form.Control type="text" name="dob" placeholder=" Insert Category" />
 
+                <Form.Group className="mb-3"  controlId="exampleForm.ControlTextarea2">
+                <Form.Label>Category</Form.Label>
+
+                <Form.Control type="text" name="dob" placeholder=" Insert Category" />
                 </Form.Group>
+
                 {isChecked ?( //IsChecked means Avaliable 
-                  <div className='embedded-text-container'>
-                    <Form.Group
-                    className="mb-3"
-                    id='embedded-text-Ava'
-                    controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>First Name:  </Form.Label>
-                        <Form.Control type="text" name="dob" placeholder=" Insert First Name" />
-                    </Form.Group>
-                    <Form.Group
-                    className="mb-3"
-                    id='embedded-text-Ava'
-                    controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>Last Name: </Form.Label>
-                        <Form.Control type="text" name="dob" placeholder=" Insert Last Name" />
-                    </Form.Group>
-                    <Form.Group
-                    className="mb-3"
-                    id='embedded-text-Ava'
-                    controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>Year: :{id} </Form.Label>
-                        <Form.Control type="text" name="dob" placeholder=" Insert Year" />
-                    </Form.Group>
-                    <Form.Group
-                    className="mb-3"
-                    id='embedded-text-Ava'
-                    controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>Student ID: </Form.Label>
-                        <Form.Control type="text" name="dob" placeholder=" Insert SID" />
-                    </Form.Group>
-                    <Form.Group
-                    className="mb-3"
-                    id='embedded-text-Ava'
-                    controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>Major: </Form.Label>
-                        <Form.Control type="text" name="dob" placeholder=" Insert Major" />
-                    </Form.Group>
-                  </div>
+
+                <div className='embedded-text-container'>
+                    <NameGroup value={name_Avaliable} onChange={setName_Avaliable} />
+                    <YearGroup value={year_Avaliable} onChange={setYear_Avaliable} />
+                    <DepartmentGroup value={department_Avaliable} onChange={setDepartment_Avaliable} />
+                
+                </div>
+                  
+
                 ):(//!IsChecked means Unavaliable 
-                  <div className='embedded-text-container'>
-                      <Form.Group
-                      className="mb-3"
-                      id='embedded-text'
-                      controlId="exampleForm.ControlTextarea2"
-                      >
-                          <Form.Label>Name: </Form.Label>
-                          <p>{name}</p>
-                      </Form.Group>
-                      <Form.Group
-                      className="mb-3"
-                      id='embedded-text'
-                      controlId="exampleForm.ControlTextarea2"
-                      >
-                          <Form.Label>Year: </Form.Label>
-                          <p>{year}</p>
-                      </Form.Group>
-                      <Form.Group
-                      className="mb-3"
-                      id='embedded-text'
-                      controlId="exampleForm.ControlTextarea2"
-                      >
-                          <Form.Label>Student ID: </Form.Label>
-                          <p>{studentid}</p>
-                      </Form.Group>
-                      <Form.Group
-                      className="mb-3"
-                      id='embedded-text'
-                      controlId="exampleForm.ControlTextarea2"
-                      >
-                          <Form.Label>Major: </Form.Label>
-                          <p>{department}</p>
-                      </Form.Group>
+                <div className='embedded-text-container'>
+                    <StudentIdGroup value={sid} onSubmit={handleSubmit} />
+                    <NameGroup value={name} onChange={setName} />
+                    <YearGroup value={year} onChange={setYear} />
+                    <DepartmentGroup value={department} onChange={setDepartment} />
+                    <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
+                    <ReturnDateGroup value={returnDate} onChange={setReturnDate} />
                   </div>
-                )}
-              <Form.Group 
-                  className="mb-3"
-                  controlId="exampleForm.ControlTextarea2"
-              >
-                  <Form.Label>Item Image</Form.Label>
-                  <Form.Control type="file" name="image" accept="image/*" />
-              </Form.Group>
+                  )}
+
+                  {/*/////////////////////// */}
+                  <Form.Group 
+                      className="mb-3"
+                      controlId="exampleForm.ControlTextarea2"
+                  >
+                      <Form.Label>Item Image</Form.Label>
+                      <Form.Control type="file" name="image" accept="image/*" />
+                  </Form.Group>
+                  {/* ///////////////////// */}
+
             </div>
           </Form>
         </Modal.Body>
+        
+          
+        
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Back
           </Button>
+        
           <Button variant="primary" onClick={handleClose}>
             Ok
           </Button>
@@ -189,6 +180,115 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
       </Modal>
     </>
   );
+
+  function StudentIdGroup({ value, onChange, onSubmit }) {
+    return (
+      // <Form.Group className="mb-3" controlId="studentId">
+      //   <Form.Label>Student ID:</Form.Label>
+      //   <div style={{ display: 'flex' }}>
+      //     <Form.Control type="text" name="sid" placeholder="Insert SID" onChange={onChange} />
+      //     <Button type="submit" onClick={onSubmit}>Submit</Button>
+      //     <Button type="submit" onClick={handleresetid}>reset</Button>
+      //   </div>
+      // </Form.Group>
+      <Form.Group className="mb-3" controlId="studentId">
+          {/* Label for the input */}
+          <Form.Label style={{ fontWeight: 'bold' }}>Student ID:</Form.Label>
+
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {/* Input box */}
+            <Form.Control 
+              type="text" 
+              name="sid" 
+              placeholder="Insert SID" 
+              onChange={onChange} 
+              style={{ 
+                flex: 1, // Take up all available space
+                marginRight: '10px', // Add some space to the right
+                border: '2px solid #ccc', // Add a border
+                borderRadius: '5px', // Rounded corners
+                padding: '5px 10px' // Add some padding
+              }} 
+            />
+
+            {/* Submit button */}
+            <Button 
+              type="submit" 
+              onClick={onSubmit} 
+              style={{ 
+                backgroundColor: '#007bff', // Blue background color
+                color: 'white', // White text color
+                border: 'none', // Remove border
+                borderRadius: '5px', // Rounded corners
+                padding: '5px 10px' // Add some padding
+              }}
+            >
+              Submit
+            </Button>
+
+            {/* Reset button */}
+            <Button 
+              type="button" 
+              onClick={handleresetid} 
+              style={{ 
+                backgroundColor: '#dc3545', // Red background color
+                color: 'white', // White text color
+                border: 'none', // Remove border
+                borderRadius: '5px', // Rounded corners
+                padding: '5px 10px', // Add some padding
+                marginLeft: '10px' // Add some space to the left
+              }}
+            >
+              Reset
+            </Button>
+          </div>
+        </Form.Group>
+    );
+  }
+  function NameGroup({ value, onChange }) {
+    return (
+      <Form.Group className="mb-3" controlId="studentName">
+        <Form.Label>Name:</Form.Label>
+        <p>{value}</p>
+      </Form.Group>
+    );
+  }
+  
+  function YearGroup({ value, onChange }) {
+    return (
+      <Form.Group className="mb-3" controlId="studentYear">
+        <Form.Label>Year:</Form.Label>
+        <p>{value}</p>
+      </Form.Group>
+    );
+  }
+  
+  function DepartmentGroup({ value, onChange }) {
+    return (
+      <Form.Group className="mb-3" controlId="studentDepartment">
+        <Form.Label>Department:</Form.Label>
+        <p>{value}</p>
+      </Form.Group>
+    );
+  }
+  
+  function BorrowDateGroup({ value, onChange }) {
+    return (
+      <Form.Group className="mb-3" controlId="borrowDate">
+        <Form.Label>Borrow Date:</Form.Label>
+        <Form.Control type="date" name="borrowDate" value={value} onChange={onChange} />
+      </Form.Group>
+    );
+  }
+  
+  function ReturnDateGroup({ value, onChange }) {
+    return (
+      <Form.Group className="mb-3" controlId="returnDate">
+        <Form.Label>Return Date:</Form.Label>
+        <Form.Control type="date" name="returnDate" value={value} onChange={onChange} />
+      </Form.Group>
+    );
+  }
 }   
 
 export default Modal_popup;
