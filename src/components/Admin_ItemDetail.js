@@ -20,7 +20,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     department: false
   });
 
-
+  const [isDeleting, setIsDeleting] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
@@ -67,7 +67,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     // Submit Student Id 
     const formData = new FormData();
     formData.append('sid', sidInputValue);
-    
     const token = localStorage.getItem('token');
     
     if (!token) {
@@ -97,26 +96,66 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       }
       alert('Failed to add admin.');
     }
-    
-    /// Mock Get Data If Click Submit_bt
-    if (!isChecked) {
-      console.log(type);
-      setName_Unaliable('Sopon');
-      setYear_Unaliable('4')
-      setDepartment_Unaliable('teacher')
-      setBorrowDate_Unaliable("2023-05-22")}
   }
 
-  const handleDelete=()=>{
-    setShow(false)
-    console.log(id)
-    delteItem(id)
-    .then(res=>{
-      console.log(res.data)
-    }).catch(err=>{
-      console.log(err)
-    })
+    const handleAvailble = async (event) => {
+      event.preventDefault();
+      console.log(status);
+      // Submit 
+      const formData = new FormData();
+      formData.append('status', status);
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        alert('Please log in first!');
+        return;
+      }
+  
+      try {
+        const response = await axios.post(
+          'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+            },
+          }
+        );
+        alert(response.data.msg);
+      } catch (error) {
+        if (error.response.status === 401) {
+          alert('Please log in first!');
+          return;
+        } else if (error.response.data.msg) {
+          alert(`Failed to OK submit. ${error.response.data.msg}`);
+          return;
+        }
+        alert("Failed to OK submit.");
+      }
+    }
+
+  const handleDelete = () => {
+    const result = window.confirm('Are you sure you want to delete?');
+    if (result) {
+      console.log('User clicked Delete');
+      setShow(false)
+      console.log(id)
+      delteItem(id)
+      .then(res=>{
+        console.log(res.data)
+        }).catch(err=>{
+          console.log(err)
+        })
+
+    } else {
+      console.log('User clicked Cancel');
+      setIsDeleting(false);
+    }
   }
+  
+
+
 
   return (
     <>
@@ -192,8 +231,25 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <DepartmentGroup value={department} />
                     {/* <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
                     <ReturnDateGroup value={returnDate} onChange={setReturnDate} /> */}
-                
+                    {/*/////////////////////// */}
+                    <Form.Group 
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea2"
+                    >
+                        <Form.Label>Item Image</Form.Label>
+                        <Form.Control type="file" name="image" accept="image/*" />
+                    </Form.Group>
+                    {/* ///////////////////// */}
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Back
+                        </Button>
+                        <Button variant="primary" onClick={handleAvailble}>
+                          Ok_Available
+                        </Button>
+                      </Modal.Footer>
                 </div>
+          
                   
 
                 ):(//!IsChecked means Unavaliable 
@@ -214,32 +270,34 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <DepartmentGroup value={department_Unaliable} onChange={setDepartment_Unaliable} />
                     <BorrowDateGroup value={borrowDate_Unaliable} onChange={setBorrowDate_Unaliable} />
                     <ReturnDateGroup value={returnDate_Unaliable} onChange={setReturnDate_Unaliable} />
+                    {/*/////////////////////// */}
+                    <Form.Group 
+                        className="mb-3"
+                        controlId="exampleForm.ControlTextarea2"
+                    >
+                        <Form.Label>Item Image</Form.Label>
+                        <Form.Control type="file" name="image" accept="image/*" />
+                    </Form.Group>
+                    {/* ///////////////////// */}
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Back
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                      Ok_Unavailable
+                    </Button>
+                    </Modal.Footer>
                   </div>
                   )}
 
-                  {/*/////////////////////// */}
-                  <Form.Group 
-                      className="mb-3"
-                      controlId="exampleForm.ControlTextarea2"
-                  >
-                      <Form.Label>Item Image</Form.Label>
-                      <Form.Control type="file" name="image" accept="image/*" />
-                  </Form.Group>
-                  {/* ///////////////////// */}
+                  
+                  
 
             </div>
           </Form>
         </Modal.Body>
         
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Back
-          </Button>
         
-          <Button variant="primary" onClick={handleClose}>
-            Ok
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );
