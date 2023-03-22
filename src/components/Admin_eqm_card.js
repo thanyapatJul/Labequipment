@@ -47,7 +47,7 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
       </CardActionArea>
       <CardActions>
         <Detailbtn id={id} 
-        name = {name}
+         name = {name}
          title={title} 
          type={type}    
          status={status}

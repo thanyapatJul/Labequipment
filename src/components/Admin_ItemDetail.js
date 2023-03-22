@@ -8,6 +8,8 @@ import '../Styles/AdminEquipment.css';
 // ------------for test
 
 import {delteItem} from '../function/function'
+
+
 function Modal_popup({ id, name,title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const [show, setShow] = useState(false);
   
@@ -51,14 +53,15 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       setDepartment_Unaliable('')}
   }
 
-  const handleSubmit=()=>{
-
+  const handleSubmit=(e)=>{
+    e.preventDefault();
     if (!isChecked) {
       setName_Unaliable('Sopon');
       setYear_Unaliable('4')
       setDepartment_Unaliable('teacher')
       setBorrowDate_Unaliable("2023-05-22")}
-      
+  }
+  const handleDelete=()=>{
     setShow(false)
     console.log(id)
     delteItem(id)
@@ -68,9 +71,10 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       console.log(err)
     })
   }
+
   return (
     <>
-      <Button variant="danger" onClick={handleSubmit}>
+      <Button variant="danger" onClick={handleDelete}>
         Delete
       </Button>
       <Button variant="primary" onClick={handleShow}>
