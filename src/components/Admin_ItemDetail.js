@@ -8,7 +8,7 @@ import '../Styles/AdminEquipment.css';
 // ------------for test
 
 import {delteItem} from '../function/function'
-function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
+function Modal_popup({ id, name,title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const [show, setShow] = useState(false);
   
   const [isChecked, setIsChecked] = useState({
@@ -21,39 +21,43 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
-  const [sid, setSid] = useState('');
-  const [name, setName] = useState('');
-  const [Lastname, setLastname] = useState('');
-  const [year, setYear] = useState('');
-  const [department, setDepartment] = useState('');
-  
-  const [name_Avaliable, setName_Avaliable] = useState('');
-  const [year_Avaliable, setYear_Avaliable] = useState('');
-  const [department_Avaliable, setDepartment_Avaliable] = useState('');
 
-  const [borrowDate, setBorrowDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
+  const [sid, setSid] = useState('');
+  // const [name, setName] = useState('');
+  // const [Lastname, setLastname] = useState('');
+  // const [year, setYear] = useState('');
+  // const [department, setDepartment] = useState('');
+  
+  // const [name_Avaliable, setName_Avaliable] = useState('');
+  // const [year_Avaliable, setYear_Avaliable] = useState('');
+  // const [department_Avaliable, setDepartment_Avaliable] = useState('');
+
+
+  const [name_Unaliable, setName_Unaliable] = useState('');
+  const [year_Unaliable, setYear_Unaliable] = useState('');
+  const [department_Unaliable, setDepartment_Unaliable] = useState('');
+
+  const [borrowDate_Unaliable, setBorrowDate_Unaliable] = useState('');
+  const [returnDate_Unaliable, setReturnDate_Unaliable] = useState('');
 
   
  
   // JavaScript function to handle form submission
   const handleresetid = (e) => {
     e.preventDefault();
-    if (!isChecked.name) {
-      setName('');
-      setYear('')
-      setDepartment('')}
+    if (!isChecked) {
+      setName_Unaliable('');
+      setYear_Unaliable('')
+      setDepartment_Unaliable('')}
   }
-
-
 
   const handleSubmit=()=>{
 
-    if (!isChecked.name) {
-      setName('Sopon');
-      setYear('4')
-      setDepartment('teacher')
-      setReturnDate("2023-05-22")}
+    if (!isChecked) {
+      setName_Unaliable('Sopon');
+      setYear_Unaliable('4')
+      setDepartment_Unaliable('teacher')
+      setBorrowDate_Unaliable("2023-05-22")}
       
     setShow(false)
     console.log(id)
@@ -132,12 +136,12 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 {isChecked ?( //IsChecked means Avaliable 
 
                 <div className='embedded-text-container'>
-                    <NameGroup value={name_Avaliable} onChange={setName_Avaliable} />
-                    <LastnameGroup value={name_Avaliable} onChange={setName_Avaliable} />
-                    <YearGroup value={year_Avaliable} onChange={setYear_Avaliable} />
-                    <DepartmentGroup value={department_Avaliable} onChange={setDepartment_Avaliable} />
-                    <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
-                    <ReturnDateGroup value={returnDate} onChange={setReturnDate} />
+                    <NameGroup value={name}  />
+                    <LastnameGroup value={name}/>
+                    <YearGroup value={year} />
+                    <DepartmentGroup value={department} />
+                    {/* <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
+                    <ReturnDateGroup value={returnDate} onChange={setReturnDate} /> */}
                 
                 </div>
                   
@@ -145,12 +149,12 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 ):(//!IsChecked means Unavaliable 
                 <div className='embedded-text-container'>
                     <StudentIdGroup value={sid} onSubmit={handleSubmit} />
-                    <NameGroup value={name} onChange={setName} />
-                    <LastnameGroup value={Lastname} onChange={setLastname} />
-                    <YearGroup value={year} onChange={setYear} />
-                    <DepartmentGroup value={department} onChange={setDepartment} />
-                    <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
-                    <ReturnDateGroup value={returnDate} onChange={setReturnDate} />
+                    <NameGroup value={name_Unaliable} onChange={setName_Unaliable} />
+                    {/* <LastnameGroup value={Lastname} onChange={setLastname} /> */}
+                    <YearGroup value={year_Unaliable} onChange={setYear_Unaliable} />
+                    <DepartmentGroup value={department_Unaliable} onChange={setDepartment_Unaliable} />
+                    <BorrowDateGroup value={borrowDate_Unaliable} onChange={setBorrowDate_Unaliable} />
+                    <ReturnDateGroup value={returnDate_Unaliable} onChange={setReturnDate_Unaliable} />
                   </div>
                   )}
 
