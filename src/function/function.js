@@ -18,3 +18,6 @@ export const AddItem = async(values)=>
 
 export const delteItem = async(values)=>
     await axios.delete('http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment/delete/'+values,{headers:{authorization:`Bearer ${jwt}`}});
+
+export const loadUser_parth = async()=>
+    await axios.post('http://localhost:5000/sid',{headers:{authorization:`Bearer ${jwt}`}});
