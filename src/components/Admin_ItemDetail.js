@@ -10,7 +10,6 @@ import {delteItem} from '../function/function'
 function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
@@ -47,7 +46,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
                 >
-                <Form.Label>Item Title</Form.Label>
+                <Form.Label>Item Title : {title}</Form.Label>
                 <Form.Control type="text" name="dob" 
                 placeholder="Insert Item Title" />
 
@@ -56,7 +55,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea2"
                 >
-                <Form.Label>Item Id</Form.Label>
+                <Form.Label>Item Id : {id}</Form.Label>
                 <Form.Control type="text" name="dob" placeholder="Insert ItemId " />
                 </Form.Group>
                 <Form.Group className="mb-3" id='check-box-ItemDetail' controlId="exampleForm.ControlCheckbox1">
@@ -86,7 +85,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea2"
                 >
-                <Form.Label>Category</Form.Label>
+                <Form.Label>Category : {category}</Form.Label>
                 <Form.Control type="text" name="dob" placeholder=" Insert Category" />
 
                 </Form.Group>
@@ -97,7 +96,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                     id='embedded-text-Ava'
                     controlId="exampleForm.ControlTextarea2"
                     >
-                        <Form.Label>First Name: </Form.Label>
+                        <Form.Label>First Name:  </Form.Label>
                         <Form.Control type="text" name="dob" placeholder=" Insert First Name" />
                     </Form.Group>
                     <Form.Group
@@ -113,7 +112,7 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
                     id='embedded-text-Ava'
                     controlId="exampleForm.ControlTextarea2"
                     >
-                        <Form.Label>Year: </Form.Label>
+                        <Form.Label>Year: :{id} </Form.Label>
                         <Form.Control type="text" name="dob" placeholder=" Insert Year" />
                     </Form.Group>
                     <Form.Group

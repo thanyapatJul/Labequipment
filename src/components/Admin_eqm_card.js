@@ -46,7 +46,18 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Detailbtn id={id}></Detailbtn>
+        <Detailbtn id={id} 
+         title={title} 
+         type={type}    
+         status={status}
+         department={department}
+         year={year}         
+         location={location}
+         image={image}
+         category={category}
+         studentid={studentid}
+         returndate={returndate}
+        ></Detailbtn>
       </CardActions>
     </Card>
   );
