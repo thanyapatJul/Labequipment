@@ -7,6 +7,7 @@ import {CardActionArea, CardActions } from '@mui/material';
 import Detailbtn from '../components/Admin_ItemDetail'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const byteCharacters = atob(image);
   const byteNumbers = new Array(byteCharacters.length);
@@ -45,7 +46,18 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Detailbtn></Detailbtn>
+        <Detailbtn id={id} 
+         title={title} 
+         type={type}    
+         status={status}
+         department={department}
+         year={year}         
+         location={location}
+         image={image}
+         category={category}
+         studentid={studentid}
+         returndate={returndate}
+        ></Detailbtn>
       </CardActions>
     </Card>
   );

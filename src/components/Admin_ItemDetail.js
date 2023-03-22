@@ -7,13 +7,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/AdminEquipment.css';
 // ------------for test
 
-function Modal_popup({ type}) {
+import {delteItem} from '../function/function'
+function Modal_popup({ id, title, type, status, department, year, location, image, category,studentid ,name}) {
   const [show, setShow] = useState(false);
+  
   const [isChecked, setIsChecked] = useState({
     name: false,
     year: false,
     department: false
   });
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -51,9 +54,21 @@ function Modal_popup({ type}) {
 
 
 
+
+
+  const handleSubmit=()=>{
+    setShow(false)
+    console.log(id)
+    delteItem(id)
+    .then(res=>{
+      console.log(res.data)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
   return (
     <>
-      <Button variant="danger" onClick={handleClose}>
+      <Button variant="danger" onClick={handleSubmit}>
         Delete
       </Button>
       <Button variant="primary" onClick={handleShow}>
@@ -71,13 +86,18 @@ function Modal_popup({ type}) {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
                 >
-                <Form.Label>Item Title</Form.Label>
+                <Form.Label>Item Title : {title}</Form.Label>
                 <Form.Control type="text" name="dob" 
                 placeholder="Insert Item Title" />
 
                 </Form.Group>
-                <Form.Group  className="mb-3" controlId="exampleForm.ControlTextarea2">
-                <Form.Label>Item Id</Form.Label>
+
+                <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea2"
+                >
+                <Form.Label>Item Id : {id}</Form.Label>
+
                 <Form.Control type="text" name="dob" placeholder="Insert ItemId " />
                 </Form.Group>
 
@@ -104,12 +124,15 @@ function Modal_popup({ type}) {
                 <Form.Control type="text" name="dob" placeholder="Insert Type" />
 
                 </Form.Group>
+
                 <Form.Group className="mb-3"  controlId="exampleForm.ControlTextarea2">
                 <Form.Label>Category</Form.Label>
+
                 <Form.Control type="text" name="dob" placeholder=" Insert Category" />
                 </Form.Group>
 
                 {isChecked ?( //IsChecked means Avaliable 
+
                 <div className='embedded-text-container'>
                     <NameGroup value={name_Avaliable} onChange={setName_Avaliable} />
                     <YearGroup value={year_Avaliable} onChange={setYear_Avaliable} />
@@ -117,6 +140,7 @@ function Modal_popup({ type}) {
                 
                 </div>
                   
+
                 ):(//!IsChecked means Unavaliable 
                 <div className='embedded-text-container'>
                     <StudentIdGroup value={sid} onSubmit={handleSubmit} />
