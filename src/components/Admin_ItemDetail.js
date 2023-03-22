@@ -20,6 +20,7 @@ function Modal_popup({ type}) {
   const handleCheckboxChange = () => setIsChecked(!isChecked);
   const [sid, setSid] = useState('');
   const [name, setName] = useState('');
+  const [Lastname, setLastname] = useState('');
   const [year, setYear] = useState('');
   const [department, setDepartment] = useState('');
   
@@ -34,9 +35,11 @@ function Modal_popup({ type}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!isChecked.name) {
-    setName('Sopon');
-    setYear('4')
-    setDepartment('teacher')}
+      setName('Sopon');
+      setYear('4')
+      setDepartment('teacher')
+      setReturnDate("2023-05-22")}
+
   };
 
   // JavaScript function to handle form submission
@@ -46,10 +49,7 @@ function Modal_popup({ type}) {
       setName('');
       setYear('')
       setDepartment('')}
-   
   }
-
-
 
   return (
     <>
@@ -112,8 +112,11 @@ function Modal_popup({ type}) {
                 {isChecked ?( //IsChecked means Avaliable 
                 <div className='embedded-text-container'>
                     <NameGroup value={name_Avaliable} onChange={setName_Avaliable} />
+                    <LastnameGroup value={name_Avaliable} onChange={setName_Avaliable} />
                     <YearGroup value={year_Avaliable} onChange={setYear_Avaliable} />
                     <DepartmentGroup value={department_Avaliable} onChange={setDepartment_Avaliable} />
+                    <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
+                    <ReturnDateGroup value={returnDate} onChange={setReturnDate} />
                 
                 </div>
                   
@@ -121,6 +124,7 @@ function Modal_popup({ type}) {
                 <div className='embedded-text-container'>
                     <StudentIdGroup value={sid} onSubmit={handleSubmit} />
                     <NameGroup value={name} onChange={setName} />
+                    <LastnameGroup value={Lastname} onChange={setLastname} />
                     <YearGroup value={year} onChange={setYear} />
                     <DepartmentGroup value={department} onChange={setDepartment} />
                     <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
@@ -141,8 +145,6 @@ function Modal_popup({ type}) {
             </div>
           </Form>
         </Modal.Body>
-        
-          
         
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -225,6 +227,15 @@ function Modal_popup({ type}) {
     return (
       <Form.Group className="mb-3" controlId="studentName">
         <Form.Label>Name:</Form.Label>
+        <p>{value}</p>
+      </Form.Group>
+    );
+  }
+
+  function LastnameGroup({ value, onChange }) {
+    return (
+      <Form.Group className="mb-3" controlId="studentName">
+        <Form.Label>Lastname:</Form.Label>
         <p>{value}</p>
       </Form.Group>
     );
