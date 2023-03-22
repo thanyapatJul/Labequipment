@@ -8,6 +8,7 @@ import '../Styles/AdminEquipment.css';
 // ------------for test
 
 import {delteItem} from '../function/function'
+import axios from "axios";
 
 
 function Modal_popup({ id, name,title, type, status, department, year, location, image, category,studentid ,returndate }) {
@@ -25,6 +26,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   const handleCheckboxChange = () => setIsChecked(!isChecked);
 
   const [sid, setSid] = useState('');
+  const [sidInputValue, setSidInputValue] = useState('');
   // const [name, setName] = useState('');
   // const [Lastname, setLastname] = useState('');
   // const [year, setYear] = useState('');
@@ -53,14 +55,58 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       setDepartment_Unaliable('')}
   }
 
-  const handleSubmit=(e)=>{
-    e.preventDefault();
+  // const handleInputChange = (event) => {
+  //   setSidInputValue(event.target.value);
+  // }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setSidInputValue(event.target.value);
+    console.log(sidInputValue);
+
+    // Submit Student Id 
+    const formData = new FormData();
+    formData.append('sid', sidInputValue);
+    
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      alert('Please log in first!');
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+          },
+        }
+      );
+      alert(response.data.msg);
+    } catch (error) {
+      if (error.response.status === 401) {
+        alert('Please log in first!');
+        return;
+      } else if (error.response.data.msg) {
+        alert(`Failed to add admin. ${error.response.data.msg}`);
+        return;
+      }
+      alert('Failed to add admin.');
+    }
+    
+    /// Mock Get Data If Click Submit_bt
     if (!isChecked) {
+      console.log(type);
       setName_Unaliable('Sopon');
       setYear_Unaliable('4')
       setDepartment_Unaliable('teacher')
       setBorrowDate_Unaliable("2023-05-22")}
   }
+
   const handleDelete=()=>{
     setShow(false)
     console.log(id)
@@ -152,7 +198,16 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
 
                 ):(//!IsChecked means Unavaliable 
                 <div className='embedded-text-container'>
-                    <StudentIdGroup value={sid} onSubmit={handleSubmit} />
+                  {/* Label for the input */}
+                    <Form.Label style={{ fontWeight: 'bold' }}>Student ID:</Form.Label>
+                    <input type="text" value={sidInputValue} onChange={(e) => setSidInputValue(e.target.value)} style={{ 
+                      flex: 1, // Take up all available space
+                      marginRight: '10px', // Add some space to the right
+                      border: '2px solid #ccc', // Add a border
+                      borderRadius: '5px', // Rounded corners
+                      padding: '5px 10px' // Add some padding
+                    }}/>
+                    <StudentIdGroup onSubmit={handleSubmit} />
                     <NameGroup value={name_Unaliable} onChange={setName_Unaliable} />
                     {/* <LastnameGroup value={Lastname} onChange={setLastname} /> */}
                     <YearGroup value={year_Unaliable} onChange={setYear_Unaliable} />
@@ -200,15 +255,18 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       //   </div>
       // </Form.Group>
       <Form.Group className="mb-3" controlId="studentId">
-          {/* Label for the input */}
-          <Form.Label style={{ fontWeight: 'bold' }}>Student ID:</Form.Label>
 
           <div style={{ display: 'flex', alignItems: 'center' }}>
+          
             {/* Input box */}
-            <Form.Control 
+
+            
+            
+            {/* <Form.Control 
               type="text" 
-              name="sid" 
+              name="sidInputValue" 
               placeholder="Insert SID" 
+
               onChange={onChange} 
               style={{ 
                 flex: 1, // Take up all available space
@@ -217,7 +275,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                 borderRadius: '5px', // Rounded corners
                 padding: '5px 10px' // Add some padding
               }} 
-            />
+            /> */}
 
             {/* Submit button */}
             <Button 
@@ -249,8 +307,11 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
             >
               Reset
             </Button>
+            
           </div>
+          
         </Form.Group>
+        
     );
   }
   function NameGroup({ value, onChange }) {
