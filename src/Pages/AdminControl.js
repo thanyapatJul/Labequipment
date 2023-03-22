@@ -7,15 +7,12 @@ function AdminControl() {
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
 
- 
-
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
-
   const [deleteId, setDeleteAdminId] = useState('');
-
+  const [depart, setDepart] = useState('');
 
   const handleAddAdminSubmit = (event) => {
     event.preventDefault();
@@ -45,7 +42,6 @@ function AdminControl() {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('surname', lastName);
-    formData.append('depart','')
     formData.append('sid', adminId);
     formData.append('password', password);
     formData.append('depart', depart);
@@ -171,12 +167,20 @@ const handleSubmit_delete_bt = async (event) => {
                     <input type="text" value={adminId} onChange={(e) => setAdminId(e.target.value)} />
                 </label>
             </div>
+
+            <div className='form-control-AddAdmin'>
+                <label>
+                    Depart:
+                    <input type="text" value={depart} onChange={(e) => setDepart(e.target.value)} />
+                </label>
+            
+            </div>
             <div className='form-control-AddAdmin'>
                 <label>
                     Password:
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <input type="text" value={depart} onChange={(e) => setDepart(e.target.value)} />
+                
             </div>
           <button className='Add-Admin' type="submit" onClick={handleSubmit_admin_bt}>Add Admin</button>
         </form>
