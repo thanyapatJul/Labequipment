@@ -100,7 +100,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     }
   }
 
-<<<<<<< HEAD
     const handleAvailble = async (event) => {
       event.preventDefault();
       console.log(status);
@@ -155,29 +154,27 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       console.log('User clicked Cancel');
       setIsDeleting(false);
     }
-=======
-  const handleDelete=()=>{
-    setShow(false)
-    console.log(id)
-    delteItem(id)
-    .then(res=>{
-      console.log(res.data)
-      MySwal.fire({
-        html: <i>Delete complete!</i>,
-        icon: 'success'
-    }).then(() => {
-        window.location.reload();
-    });
-    }).catch(err=>{
-      console.log(err)
-      MySwal.fire({
-        html: <i>Delete complete!</i>,
-        icon: 'fail'
-    })
-    })
->>>>>>> f4bfc6bd9a520b2e859ca8daeb20933cd757a025
-  }
-  
+    
+  // const handleDelete=()=>{
+  //   setShow(false)
+  //   console.log(id)
+  //   delteItem(id)
+  //   .then(res=>{
+  //     console.log(res.data)
+  //     MySwal.fire({
+  //       html: <i>Delete complete!</i>,
+  //       icon: 'success'
+  //   }).then(() => {
+  //       window.location.reload();
+  //   });
+  //   }).catch(err=>{
+  //     console.log(err)
+  //     MySwal.fire({
+  //       html: <i>Delete complete!</i>,
+  //       icon: 'fail'
+  //   })
+  //   })
+}
 
 
 
