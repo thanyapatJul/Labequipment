@@ -4,11 +4,13 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AddItem } from '../function/function';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 
 function Modal_popup() {
   const [show, setShow] = useState(false);
-  
+  const MySwal = withReactContent(Swal)
   const [inputs, setInputs] = useState({});
 
 
@@ -34,8 +36,20 @@ function Modal_popup() {
     AddItem(formdata)
     .then(res=>{
       console.log(res.data)
+      MySwal.fire({
+        html: <i>{res.data.msg}</i>,
+        icon: 'success'
+    }).then(() => {
+        window.location.reload();
+    });
     }).catch(err=>{
       console.log(err)
+      MySwal.fire({
+        html: <i> {err}</i>,
+        icon: 'fail'
+    }).then(() => {
+        window.location.reload();
+    });
     })
   }
   return (
