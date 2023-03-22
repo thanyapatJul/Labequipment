@@ -14,6 +14,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { loadUser_parth } from '../function/function';
 
 
+
 function Modal_popup({ id, name,title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const [show, setShow] = useState(false);
   const MySwal = withReactContent(Swal)
@@ -28,11 +29,11 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
-  const [new_status_Availble, setNew_status_Availble] = useState('Availble');
+  const [new_status_Availble, setNew_status_Availble] = useState('Available');
   const [new_status_Unavailable, setNew_status_Unavailable] = useState('Unavailable');
   
-  const [sid, setSid] = useState('');
-  const [sidInputValue, setSidInputValue] = useState('');
+  
+  
   // const [name, setName] = useState('');
   // const [Lastname, setLastname] = useState('');
   // const [year, setYear] = useState('');
@@ -42,7 +43,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   // const [year_Avaliable, setYear_Avaliable] = useState('');
   // const [department_Avaliable, setDepartment_Avaliable] = useState('');
 
-  
+  const [sidInputValue, setSidInputValue] = useState('');
+  const [sidInputnow, setSidInputnow] = useState('');
   const [name_Unaliable, setName_Unaliable] = useState('');
   const [year_Unaliable, setYear_Unaliable] = useState('');
   const [department_Unaliable, setDepartment_Unaliable] = useState('');
@@ -60,9 +62,25 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       setDepartment_Unaliable('')}
   }
 
+  function handleBorrowDateChange(event) {
+    setBorrowDate_Unaliable(event.target.value);
+    console.log('Borrow Date:', borrowDate_Unaliable);
+  }
+
+  function handleReturnDateChange(event) {
+    setReturnDate_Unaliable(event.target.value);
+    console.log('Return Date:', returnDate_Unaliable);
+  }
+
+  function Inputnow(event) {
+    setSidInputnow(event.target.value);
+    console.log('SidInputnow:', sidInputnow);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSidInputValue(event.target.value);
+    setSidInputnow(sidInputValue)
     console.log(sidInputValue);
 
     // Submit Student Id 
@@ -111,10 +129,11 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       // formData.append('title', title);
       formData.append('eqm_id', id);
       formData.append('s_id', studentid);
+
       // formData.append('type', type);
       // formData.append('category', category);
       // formData.append('location', location);
-      console.log(new_status_Availble,studentid,id); // will output "Available" to the console
+      console.log(new_status_Unavailable,studentid,id); // will output "Available" to the console
 
       if (!token) {
         alert('Please log in first!');
@@ -152,14 +171,18 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       const token = localStorage.getItem('token');
       // Submit 
       const formData = new FormData();
-      formData.append('status', new_status_Unvailble);
+      formData.append('status', new_status_Unavailable);
       // formData.append('title', title);
       formData.append('eqm_id', id);
-      formData.append('s_id', studentid);
+      formData.append('s_id', sidInputnow);
+      formData.append('borrow_id', borrowDate_Unaliable);
+      formData.append('return_id', returnDate_Unaliable);
+      formData.append('admin_id', localStorage.getItem('sid'));
+
       // formData.append('type', type);
       // formData.append('category', category);
       // formData.append('location', location);
-      console.log(new_status_Availble,studentid,id); // will output "Available" to the console
+      console.log(new_status_Unavailable,sidInputnow,id,borrowDate_Unaliable,returnDate_Unaliable,localStorage.getItem('sid')); // will output "Available" to the console
 
       if (!token) {
         alert('Please log in first!');
@@ -228,8 +251,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   //   })
   //   })
 }
-
-
 
   return (
     <>
@@ -343,8 +364,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     {/* <LastnameGroup value={Lastname} onChange={setLastname} /> */}
                     <YearGroup value={year_Unaliable} onChange={setYear_Unaliable} />
                     <DepartmentGroup value={department_Unaliable} onChange={setDepartment_Unaliable} />
-                    <BorrowDateGroup value={borrowDate_Unaliable} onChange={setBorrowDate_Unaliable} />
-                    <ReturnDateGroup value={returnDate_Unaliable} onChange={setReturnDate_Unaliable} />
+                    <BorrowDateGroup value={borrowDate_Unaliable} onChange={handleBorrowDateChange} />
+                    <ReturnDateGroup value={returnDate_Unaliable} onChange={handleReturnDateChange} />
                     {/*/////////////////////// */}
                     <Form.Group 
                         className="mb-3"
@@ -358,7 +379,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <Button variant="secondary" onClick={handleClose}>
                       Back
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleUnvailble}>
                       Ok_Unavailable
                     </Button>
                     </Modal.Footer>
