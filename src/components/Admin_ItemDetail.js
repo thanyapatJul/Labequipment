@@ -29,6 +29,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
   const [new_status_Availble, setNew_status_Availble] = useState('Availble');
+  const [new_status_Unavailable, setNew_status_Unavailable] = useState('Unavailable');
+  
   const [sid, setSid] = useState('');
   const [sidInputValue, setSidInputValue] = useState('');
   // const [name, setName] = useState('');
@@ -98,7 +100,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     }
   }
 
-    const handleAvailble = async (event) => {
+  const handleAvailble = async (event) => {
       event.preventDefault();
       console.log(status);
       
@@ -139,7 +141,52 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
           alert(`No Response data. ${error.response.data.msg}`);
           return;
         }
-        alert("Failed to OK submit.");
+        alert("Failed to submit.");
+      }
+    }
+
+    const handleUnvailble = async (event) => {
+      event.preventDefault();
+      console.log(status);
+      
+      const token = localStorage.getItem('token');
+      // Submit 
+      const formData = new FormData();
+      formData.append('status', new_status_Unvailble);
+      // formData.append('title', title);
+      formData.append('eqm_id', id);
+      formData.append('s_id', studentid);
+      // formData.append('type', type);
+      // formData.append('category', category);
+      // formData.append('location', location);
+      console.log(new_status_Availble,studentid,id); // will output "Available" to the console
+
+      if (!token) {
+        alert('Please log in first!');
+        return;
+      }
+  
+      try {
+        const response = await axios.put(
+          'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+            },
+          }
+        );
+        alert(response.data.msg);
+      } catch (error) {
+        if (error.response.status === 401) {
+          alert('Please log in first!');
+          return;
+        } else if (error.response.data.msg) {
+          alert(`No Response data. ${error.response.data.msg}`);
+          return;
+        }
+        alert("Failed to submit.");
       }
     }
 
