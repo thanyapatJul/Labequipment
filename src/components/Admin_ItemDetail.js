@@ -9,11 +9,13 @@ import '../Styles/AdminEquipment.css';
 
 import {delteItem} from '../function/function'
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 
 function Modal_popup({ id, name,title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const [show, setShow] = useState(false);
-  
+  const MySwal = withReactContent(Swal)
   const [isChecked, setIsChecked] = useState({
     name: false,
     year: false,
@@ -113,8 +115,18 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     delteItem(id)
     .then(res=>{
       console.log(res.data)
+      MySwal.fire({
+        html: <i>Delete complete!</i>,
+        icon: 'success'
+    }).then(() => {
+        window.location.reload();
+    });
     }).catch(err=>{
       console.log(err)
+      MySwal.fire({
+        html: <i>Delete complete!</i>,
+        icon: 'fail'
+    })
     })
   }
 
