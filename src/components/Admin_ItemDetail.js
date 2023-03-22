@@ -11,6 +11,8 @@ import {delteItem} from '../function/function'
 import axios from "axios";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { loadUser_parth } from '../function/function';
+
 
 
 function Modal_popup({ id, name,title, type, status, department, year, location, image, category,studentid ,returndate }) {
@@ -22,13 +24,16 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     department: false
   });
 
+  const [loadUserData, setloadUserData] = useState([]);
   const [isDeleting, setIsDeleting] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCheckboxChange = () => setIsChecked(!isChecked);
-
-  const [sid, setSid] = useState('');
-  const [sidInputValue, setSidInputValue] = useState('');
+  const [new_status_Availble, setNew_status_Availble] = useState('Available');
+  const [new_status_Unavailable, setNew_status_Unavailable] = useState('Unavailable');
+  
+  
+  
   // const [name, setName] = useState('');
   // const [Lastname, setLastname] = useState('');
   // const [year, setYear] = useState('');
@@ -38,7 +43,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   // const [year_Avaliable, setYear_Avaliable] = useState('');
   // const [department_Avaliable, setDepartment_Avaliable] = useState('');
 
-
+  const [sidInputValue, setSidInputValue] = useState('');
+  const [sidInputnow, setSidInputnow] = useState('');
   const [name_Unaliable, setName_Unaliable] = useState('');
   const [year_Unaliable, setYear_Unaliable] = useState('');
   const [department_Unaliable, setDepartment_Unaliable] = useState('');
@@ -47,7 +53,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   const [returnDate_Unaliable, setReturnDate_Unaliable] = useState('');
 
   
- 
   // JavaScript function to handle form submission
   const handleresetid = (e) => {
     e.preventDefault();
@@ -57,13 +62,25 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       setDepartment_Unaliable('')}
   }
 
-  // const handleInputChange = (event) => {
-  //   setSidInputValue(event.target.value);
-  // }
+  function handleBorrowDateChange(event) {
+    setBorrowDate_Unaliable(event.target.value);
+    console.log('Borrow Date:', borrowDate_Unaliable);
+  }
+
+  function handleReturnDateChange(event) {
+    setReturnDate_Unaliable(event.target.value);
+    console.log('Return Date:', returnDate_Unaliable);
+  }
+
+  function Inputnow(event) {
+    setSidInputnow(event.target.value);
+    console.log('SidInputnow:', sidInputnow);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSidInputValue(event.target.value);
+    setSidInputnow(sidInputValue)
     console.log(sidInputValue);
 
     // Submit Student Id 
@@ -77,17 +94,18 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     }
 
     try {
-      const response = await axios.post(
-        'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
-          },
-        }
-      );
-      alert(response.data.msg);
+      const response = await axios.post("http://localhost:5000/sid", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
+        },
+      });
+      console.log(response.data[0]["Name"],response.data[0]["major"],response.data[0]["year"])
+      setName_Unaliable(response.data[0]["Name"])
+      setDepartment_Unaliable(response.data[0]["major"])
+      setYear_Unaliable(response.data[0]["year"])
+      
+
     } catch (error) {
       if (error.response.status === 401) {
         alert('Please log in first!');
@@ -100,13 +118,22 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     }
   }
 
-    const handleAvailble = async (event) => {
+  const handleAvailble = async (event) => {
       event.preventDefault();
       console.log(status);
+      
+      const token = localStorage.getItem('token');
       // Submit 
       const formData = new FormData();
-      formData.append('status', status);
-      const token = localStorage.getItem('token');
+      formData.append('status', new_status_Availble);
+      // formData.append('title', title);
+      formData.append('eqm_id', id);
+      formData.append('s_id', studentid);
+
+      // formData.append('type', type);
+      // formData.append('category', category);
+      // formData.append('location', location);
+      console.log(new_status_Unavailable,studentid,id); // will output "Available" to the console
 
       if (!token) {
         alert('Please log in first!');
@@ -114,7 +141,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       }
   
       try {
-        const response = await axios.post(
+        const response = await axios.put(
           'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
           formData,
           {
@@ -130,10 +157,59 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
           alert('Please log in first!');
           return;
         } else if (error.response.data.msg) {
-          alert(`Failed to OK submit. ${error.response.data.msg}`);
+          alert(`No Response data. ${error.response.data.msg}`);
           return;
         }
-        alert("Failed to OK submit.");
+        alert("Failed to submit.");
+      }
+    }
+
+    const handleUnvailble = async (event) => {
+      event.preventDefault();
+      console.log(status);
+      
+      const token = localStorage.getItem('token');
+      // Submit 
+      const formData = new FormData();
+      formData.append('status', new_status_Unavailable);
+      // formData.append('title', title);
+      formData.append('eqm_id', id);
+      formData.append('s_id', sidInputnow);
+      formData.append('borrow_id', borrowDate_Unaliable);
+      formData.append('return_id', returnDate_Unaliable);
+      formData.append('admin_id', localStorage.getItem('sid'));
+
+      // formData.append('type', type);
+      // formData.append('category', category);
+      // formData.append('location', location);
+      console.log(new_status_Unavailable,sidInputnow,id,borrowDate_Unaliable,returnDate_Unaliable,localStorage.getItem('sid')); // will output "Available" to the console
+
+      if (!token) {
+        alert('Please log in first!');
+        return;
+      }
+  
+      try {
+        const response = await axios.put(
+          'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data' // Set the content type to multipart/form-data
+            },
+          }
+        );
+        alert(response.data.msg);
+      } catch (error) {
+        if (error.response.status === 401) {
+          alert('Please log in first!');
+          return;
+        } else if (error.response.data.msg) {
+          alert(`No Response data. ${error.response.data.msg}`);
+          return;
+        }
+        alert("Failed to submit.");
       }
     }
 
@@ -176,8 +252,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   //   })
 }
 
-
-
   return (
     <>
       <Button variant="danger" onClick={handleDelete}>
@@ -199,8 +273,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                 controlId="exampleForm.ControlTextarea1"
                 >
                 <Form.Label>Item Title : {title}</Form.Label>
-                <Form.Control type="text" name="dob" 
-                placeholder="Insert Item Title" />
+                {/* <Form.Control type="text" name="dob" 
+                placeholder="Insert Item Title" /> */}
 
                 </Form.Group>
 
@@ -210,7 +284,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                 >
                 <Form.Label>Item Id : {id}</Form.Label>
 
-                <Form.Control type="text" name="dob" placeholder="Insert ItemId " />
+                {/* <Form.Control type="text" name="dob" placeholder="Insert ItemId " /> */}
                 </Form.Group>
 
                 <Form.Group className="mb-3" id='check-box-ItemDetail' controlId="exampleForm.ControlCheckbox1">
@@ -233,26 +307,27 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                 controlId="exampleForm.ControlTextarea2"
                 >
                 <Form.Label>Type : {type}</Form.Label>
-                <Form.Control type="text" name="dob" placeholder="Insert Type" />
+                {/* <Form.Control type="text" name="dob" placeholder="Insert Type" /> */}
 
                 </Form.Group>
 
                 <Form.Group className="mb-3"  controlId="exampleForm.ControlTextarea2">
-                <Form.Label>Category</Form.Label>
+                <Form.Label>Category : {category}</Form.Label>
 
-                <Form.Control type="text" name="dob" placeholder=" Insert Category" />
+                {/* <Form.Control type="text" name="dob" placeholder=" Insert Category" /> */}
                 </Form.Group>
 
                 {isChecked ?( //IsChecked means Avaliable 
 
                 <div className='embedded-text-container'>
                     <NameGroup value={name}  />
-                    <LastnameGroup value={name}/>
+                    {/* <LastnameGroup value={name}/> */}
                     <YearGroup value={year} />
                     <DepartmentGroup value={department} />
                     {/* <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
                     <ReturnDateGroup value={returnDate} onChange={setReturnDate} /> */}
                     {/*/////////////////////// */}
+
                     <Form.Group 
                         className="mb-3"
                         controlId="exampleForm.ControlTextarea2"
@@ -289,8 +364,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     {/* <LastnameGroup value={Lastname} onChange={setLastname} /> */}
                     <YearGroup value={year_Unaliable} onChange={setYear_Unaliable} />
                     <DepartmentGroup value={department_Unaliable} onChange={setDepartment_Unaliable} />
-                    <BorrowDateGroup value={borrowDate_Unaliable} onChange={setBorrowDate_Unaliable} />
-                    <ReturnDateGroup value={returnDate_Unaliable} onChange={setReturnDate_Unaliable} />
+                    <BorrowDateGroup value={borrowDate_Unaliable} onChange={handleBorrowDateChange} />
+                    <ReturnDateGroup value={returnDate_Unaliable} onChange={handleReturnDateChange} />
                     {/*/////////////////////// */}
                     <Form.Group 
                         className="mb-3"
@@ -304,16 +379,12 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <Button variant="secondary" onClick={handleClose}>
                       Back
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleUnvailble}>
                       Ok_Unavailable
                     </Button>
                     </Modal.Footer>
                   </div>
                   )}
-
-                  
-                  
-
             </div>
           </Form>
         </Modal.Body>
@@ -339,8 +410,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
           
             {/* Input box */}
 
-            
-            
             {/* <Form.Control 
               type="text" 
               name="sidInputValue" 

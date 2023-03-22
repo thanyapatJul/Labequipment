@@ -80,7 +80,7 @@ function AdminEquipmentPage() {
           <div key={equipment.id} className="Card">
             <CardDisplay
               id={equipment.id}
-              name = {"name"}
+              name = {equipment.name}
               title={equipment.title}
               type={equipment.type}
               status={equipment.status}
