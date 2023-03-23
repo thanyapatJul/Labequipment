@@ -48,3 +48,8 @@
     font-size: 200%;
     font-weight: bold;
   }
+  .middle-Card{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }

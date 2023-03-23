@@ -10,6 +10,10 @@ import Modal from '../components/Modal_user'
 // import { width } from '@mui/system';
 // import { left } from 'holderjs';
 
+import '../Styles/Fonts.css'
+import '../Styles/Page.css'
+import '../Styles/Components.css'
+
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid}) {
   
 // convert base 64 to url
@@ -50,22 +54,22 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
             </Row>
             <Row>
               <Col>
-              <p style={{fontSize : '11px',textAlign:'center'}}>Location: {location}</p>
+              <p style={{fontSize : '15px',textAlign:'center'}}>Location: {location}</p>
               </Col>
               {/* <Col>
                 <p style={{fontSize : '11px',textAlign:'left'}}>Department: {department}</p>
               </Col> */}
             </Row>
             <Row>
-              <Col>
-                <p style={{fontSize : '11px' ,width:'200%',textAlign:'left'}}>studentid: {studentid}</p>
+              <Col className='middle-Card'>
+                <p style={{fontSize : '15px' ,width:'200%',textAlign:'center'}}>studentid: {studentid}</p>
               </Col>
               {/* <Col>
                 <p style={{fontSize : '11px'}}>Year: {year}</p>
               </Col> */}
             </Row>
             <Row>
-              <Col>
+              <Col >
                  <span className={`Card-status ${status === 'Available' ? 'available' : 'not-available'}`}>{status}</span>
               </Col>
             </Row>
