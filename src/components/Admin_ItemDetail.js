@@ -124,7 +124,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       });
 
     // try {
-    //   const response = await axios.post("http://localhost:5000/sid", formData, {
+    //   const response = await axios.post("https://backend-sql-yypd53ub4q-et.a.run.app/sid", formData, {
     //     headers: {
     //       Authorization: `Bearer ${token}`,
     //       "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
@@ -173,7 +173,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   
       try {
         const response = await axios.put(
-          'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
+          'https://backend-sql-yypd53ub4q-et.a.run.app/'+localStorage.getItem('sid')+'/admin_equipment',
           formData,
           {
             headers: {
@@ -221,7 +221,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   
       try {
         const response = await axios.put(
-          'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_equipment',
+          'https://backend-sql-yypd53ub4q-et.a.run.app/'+localStorage.getItem('sid')+'/admin_equipment',
           formData,
           {
             headers: {

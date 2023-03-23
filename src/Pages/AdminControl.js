@@ -62,7 +62,7 @@ function AdminControl() {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/'+localStorage.getItem('sid')+'/admin_control/add_admin',
+        'https://backend-sql-yypd53ub4q-et.a.run.app/'+localStorage.getItem('sid')+'/admin_control/add_admin',
         formData,
         {
           headers: {
@@ -100,7 +100,7 @@ const handleSubmit_delete_bt = async (event) => {
 
 //   try {
 //     const response = await axios.delete(
-//       `http://localhost:5000/${localStorage.getItem('sid')}/admin_control/delete_admin/${deleteId}`,
+//       `https://backend-sql-yypd53ub4q-et.a.run.app/${localStorage.getItem('sid')}/admin_control/delete_admin/${deleteId}`,
 //       {
 //         headers: {
 //           Authorization: `Bearer ${token}`,

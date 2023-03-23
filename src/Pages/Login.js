@@ -36,7 +36,7 @@ function Login_page(){
       redirect: 'follow'
     };
 
-    fetch("http://localhost:5000/login", requestOptions)
+    fetch("https://backend-sql-yypd53ub4q-et.a.run.app/login", requestOptions)
     .then(response => response.json())
     .then(result => {
         if (result.access_token) {
