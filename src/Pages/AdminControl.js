@@ -4,6 +4,11 @@ import axios from "axios";
 import { delteAdmin } from '../function/function';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+
+import '../Styles/Fonts.css'
+import '../Styles/Page.css'
+import '../Styles/Components.css'
+
 function AdminControl() {
   
   const [isAddAdmin, setIsAddAdmin] = useState(true);
@@ -66,12 +71,17 @@ function AdminControl() {
           },
         }
       );
-      alert(response.data.msg);
+      MySwal.fire({ html: <i>{response.data.msg}</i>,icon: "success",showConfirmButton: false,timer: 1000,})
     } catch (error) {
       if (error.response.status === 401) {
         alert('Please log in first!');
         return;
-      } else if (error.response.data.msg) {
+      } 
+      else if (error.response.status === 404) {
+        MySwal.fire({ html: <i>{error.response.data.msg}</i>,icon: "error",showConfirmButton: false,timer: 1000,})
+        return;
+      }
+      else if (error.response.data.msg) {
         alert(`Failed to add admin. ${error.response.data.msg}`);
         return;
       }

@@ -11,7 +11,29 @@
     box-shadow: 0 0 10px 5px #dfdcdb;
     border-radius: 1rem;
   }
-  
+.input{
+   display: flex;
+   margin-top: 10px;
+   flex-wrap: wrap;
+   align-items: center;
+   margin-left: 30px;
+}
+.input1{
+  max-width: 10rem;
+}
+.AddItem{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  grid-gap: 10px;
+  margin-top: 10px;
+  margin-left: 25px;
+  margin-right: 60px;
+  box-shadow: 0 0 10px 5px #dfdcdb;
+  border-radius: 1rem;
+
+}
   @media only screen and (max-width: 767px) {
     .Borrow_header select,
     .Borrow_header input {

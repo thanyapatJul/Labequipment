@@ -399,7 +399,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                           Back
                         </Button>
                         <Button variant="primary" onClick={handleAvailble}>
-                          Ok_Available
+                          Confirm
                         </Button>
                       </Modal.Footer>
                 </div>
@@ -429,7 +429,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                       Back
                     </Button>
                     <Button variant="primary" disabled={status == new_status_Unavailable} onClick={handleUnvailble}>
-                      Ok_Unavailable
+                      Confirm
                     </Button>
                     </Modal.Footer>
                   </div>

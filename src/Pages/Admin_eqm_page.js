@@ -66,7 +66,9 @@ function AdminEquipmentPage() {
 
   return (
     <div className="AdminEquipment_page">
-      <div className="AdminEquipment_header">
+      
+      <div className="Borrow_header">
+      
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
           <option value='Textbooks'>Textbooks</option>
@@ -79,15 +81,15 @@ function AdminEquipmentPage() {
           <option value='Long-Term'>Long-Term</option>
           <option value='In-Library'>In-Library</option>
         </select>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearch}
-          placeholder="Search equipment..."
-        />
-      </div>
-      <div className='Addsection'>
+        <input 
+            type="text"
+            value={searchQuery}
+            onChange={handleSearch}
+            placeholder="Search equipment..."
+          />
+        <div className="input1">
             <Additem></Additem>
+        </div> 
       </div>
       <div className="row row-cols-3 Borrow_content">
         {filteredEquipmentData.map((equipment) => (
