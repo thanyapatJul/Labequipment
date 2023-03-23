@@ -162,7 +162,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }
         alert("Failed to submit.");
       }
-    }
+      window.location.reload();
+  }
 
     const handleUnvailble = async (event) => {
       event.preventDefault();
@@ -211,7 +212,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }
         alert("Failed to submit.");
       }
-    }
+      window.location.reload();
+  }
 
   const handleDelete = () => {
     const result = window.confirm('Are you sure you want to delete?');
@@ -225,7 +227,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }).catch(err=>{
           console.log(err)
         })
-
+        window.location.reload();
     } else {
       console.log('User clicked Cancel');
       setIsDeleting(false);
@@ -250,7 +252,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   //       icon: 'fail'
   //   })
   //   })
-}
+  }
 
   return (
     <>
