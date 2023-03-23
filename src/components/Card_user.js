@@ -50,7 +50,7 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
             </Row>
             <Row>
               <Col>
-                <p style={{fontSize : '11px',textAlign:'left'}}>Status: {status}</p>
+              <p style={{fontSize : '11px',textAlign:'center'}}>Location: {location}</p>
               </Col>
               <Col>
                 <p style={{fontSize : '11px',textAlign:'left'}}>Department: {department}</p>
@@ -66,7 +66,7 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
             </Row>
             <Row>
               <Col>
-                <p style={{fontSize : '11px',textAlign:'center'}}>Location: {location}</p>
+                 <span className={`Card-status ${status === 'Available' ? 'available' : 'not-available'}`}>{status}</span>
               </Col>
             </Row>
 
