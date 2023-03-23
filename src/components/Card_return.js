@@ -64,7 +64,6 @@ function CardDisplay({ id, title, status, type, image, category }) {
             title={title}
             type={type}
             status={status}
-            // image={image}
             image={imageUrl}
             category={category}
           />

@@ -52,11 +52,10 @@ function Modal_popup() {
       console.log(res.data)
       MySwal.fire({
         html: <i>{res.data.msg}</i>,
-        icon: 'success'
-    }).then(() => {
-        window.location.reload();
-    });
-    }).catch(err=>{
+        icon: 'success'})
+      .then(() => {
+        window.location.reload();});})
+      .catch(err=>{
       console.log(err)
       MySwal.fire({
         html: <i> {err}</i>,
