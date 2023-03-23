@@ -246,24 +246,49 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   }
 
   const handleDelete = () => {
-    const result = window.confirm('Are you sure you want to delete?');
-    if (result) {
-      console.log('User clicked Delete');
-      setShow(false)
-      console.log(id)
-      delteItem(id)
-      .then(res=>{
-        console.log(res.data)
-        window.location.reload();
-        })
-      .catch(err=>{
-        console.log(err)
-        })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setShow(false)
+        console.log(id)
+        delteItem(id)
+        // Swal.fire(
+        //   'Deleted!',
+        //   'Your file has been deleted.',
+        //   'success',
+        // )
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000); // delay of 1 seconds
+      }
+    })
+  
+
+    // const result = window.confirm('Are you sure you want to delete?');
+    // if (result) {
+    //   console.log('User clicked Delete');
+    //   setShow(false)
+    //   console.log(id)
+    //   delteItem(id)
+    //   .then(res=>{
+    //     console.log(res.data)
+    //     window.location.reload();
+    //     })
+    //   .catch(err=>{
+    //     console.log(err)
+    //     })
         
-    } else {
-      console.log('User clicked Cancel');
-      setIsDeleting(false);
-    }
+    // } else {
+    //   console.log('User clicked Cancel');
+    //   setIsDeleting(false);
+    // }
     
   // const handleDelete=()=>{
   //   setShow(false)

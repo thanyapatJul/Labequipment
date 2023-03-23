@@ -58,19 +58,23 @@ function Modal_popup() {
         title: res.data.msg,
       }).then(() => {
         if (res.data.msg == "This equipment added successfully.") {
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         }
       })
     })
     .catch((err) => {
       console.log(err);
-      if (err.response.status === 500) {
+      if (err.response.status === 404) {
             MySwal.fire({
             html: <i> {err.response.data.msg}</i>,
-            icon: "fail",})
+            icon: "error",})
           return;
         }
-      window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
     });
   }
   return (
