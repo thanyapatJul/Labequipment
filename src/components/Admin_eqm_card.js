@@ -1,5 +1,4 @@
-
-import React, { useState , useEffect} from 'react';
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,7 +12,6 @@ import '../Styles/Card.css'
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
-import { run as runHolder } from 'holderjs/holder';
 
 export default function MultiActionAreaCard({ id,name, title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const byteCharacters = atob(image);
