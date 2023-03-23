@@ -7,6 +7,11 @@ import {CardActionArea, CardActions } from '@mui/material';
 import Detailbtn from '../components/Admin_ItemDetail'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../Styles/Card.css'
+
+import '../Styles/Fonts.css'
+import '../Styles/Page.css'
+import '../Styles/Components.css'
 
 export default function MultiActionAreaCard({ id,name, title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const byteCharacters = atob(image);
@@ -17,29 +22,36 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
   const byteArray = new Uint8Array(byteNumbers);
   const blob = new Blob([byteArray], {type: 'image/jpeg'});
   const imageUrl = URL.createObjectURL(blob);
+  
+  
   return (
-    <Card sx={{ maxWidth: 345 }}>
+
+    <Card className="card mx-auto" sx={{ maxWidth: 345, maxHeight :400}}>
       <CardActionArea>
-        <CardMedia
+        <CardMedia 
           component="img"
-          height="140"
+          height="200"
           image={imageUrl}
-          alt={imageUrl}
+          alt={'No image'}
         />
         <CardContent>
+       
           <Typography gutterBottom variant="h5" component="div">
-            {title} (id: {id})
+            <p>{title} </p>
+            <p>(id:{id})</p>
           </Typography>
+
+
           <Typography variant="body2" color="text.secondary">
             <Col>
-              <Row style={{justifyContent: 'center', alignItems: 'center'}}>
-                status : {status}
+              <Row className="Card-row">
+                <span className={`Card-status ${status === 'Available' ? 'available' : 'not-available'}`}>{status}</span>
               </Row>
-              <Row style={{justifyContent: 'center', alignItems: 'center'}}>
-                Borrowby :{studentid}  
+              <Row className="Card-row">
+                Borrowed by: {studentid || '-'}
               </Row>
-              <Row style={{justifyContent: 'center', alignItems: 'center'}}>
-                Return date :{returndate}  
+              <Row className="Card-row">
+                Return Date: {returndate || '-'}
               </Row>
             </Col>
           </Typography>

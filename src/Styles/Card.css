@@ -1,10 +1,52 @@
 .card {
-    font-size: 10px;
-  }
+  box-shadow: 0 0 10px 5px #dfdcdb;
+  background-color: #ffffff ;
+  border-radius: 1rem;
+  min-width: 25rem;
+  min-height: 35rem;
+  display: 'flex' ;
+  height : '100%';
+ 
+
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  grid-gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   
-.card-title {
+}
+  
+  .card-title {
     margin-top: 5%;
     font-size: 200%;
     font-weight: bold;
+  }
+  
+  .Card-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .Card-status {
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .available {
+    color: green;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .not-available {
+    color: red;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
   }
   

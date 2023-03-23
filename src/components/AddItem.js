@@ -25,24 +25,37 @@ function Modal_popup() {
     console.log(inputs)
   }
 
+  // const handleSubmit=()=>{
+  //   var formdata = new FormData();
+  //   formdata.append("title", inputs.title);
+  //   formdata.append("eqm_id", inputs.eqm_id);
+  //   formdata.append("eqm_type", inputs.eqm_type);
+  //   formdata.append("category", inputs.category);
+  //   formdata.append("location", inputs.location);
+  //   console.log(formdata)
+
   const handleSubmit=()=>{
     var formdata = new FormData();
+    const fileInput = document.getElementById("image-input");
+    const imageFile = fileInput.files[0];
+
     formdata.append("title", inputs.title);
     formdata.append("eqm_id", inputs.eqm_id);
     formdata.append("eqm_type", inputs.eqm_type);
     formdata.append("category", inputs.category);
     formdata.append("location", inputs.location);
+    formdata.append("image", imageFile); 
     console.log(formdata)
+
     AddItem(formdata)
     .then(res=>{
       console.log(res.data)
       MySwal.fire({
         html: <i>{res.data.msg}</i>,
-        icon: 'success'
-    }).then(() => {
-        window.location.reload();
-    });
-    }).catch(err=>{
+        icon: 'success'})
+      .then(() => {
+        window.location.reload();});})
+      .catch(err=>{
       console.log(err)
       MySwal.fire({
         html: <i> {err}</i>,
@@ -111,7 +124,7 @@ function Modal_popup() {
             >
 
             <Form.Label>Item Image</Form.Label>
-                <Form.Control type="file" name="image" accept="image/*" value={inputs.value} onChange={handleChange}/>
+                <Form.Control  id="image-input" type="file" name="image" accept="image/*" value={inputs.value} onChange={handleChange}/>
             </Form.Group>
           </Form>
         </Modal.Body>

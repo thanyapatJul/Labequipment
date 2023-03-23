@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import  '../Styles/AdminControl.css';
 import axios from "axios";
-
+import { delteAdmin } from '../function/function';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 function AdminControl() {
   
   const [isAddAdmin, setIsAddAdmin] = useState(true);
   //const [isDELAdmin, setIsDELAdmin] = useState(false);
-
+  const MySwal = withReactContent(Swal)
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [adminId, setAdminId] = useState('');
@@ -86,59 +88,48 @@ const handleSubmit_delete_bt = async (event) => {
     return;
   }
 
-
-  try {
-    const response = await axios.delete(
-      `http://localhost:5000/${localStorage.getItem('sid')}/admin_control/delete_admin/${deleteId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    alert(response.data.msg);
-  } catch (error) {
-    console.log(error);
-    if (error.response.status === 401) {
-      alert('Please log in first!');
-      return;
-    }
-    else {
-      alert('Failed to delete admin.');
-      return;
-    }
-  }
-};
-// const handleSubmit_delete_bt = async (event) => {
-//   event.preventDefault();
-  
-//   const token = localStorage.getItem('token');
-//     if (!token) {
+//   try {
+//     const response = await axios.delete(
+//       `http://localhost:5000/${localStorage.getItem('sid')}/admin_control/delete_admin/${deleteId}`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     alert(response.data.msg);
+//   } catch (error) {
+//     console.log(error);
+//     if (error.response.status === 401) {
 //       alert('Please log in first!');
 //       return;
 //     }
-
-//     try {
-//       const formData = new FormData();
-//       formData.append('delete_id', deleteId);
-
-
-//       const response = await axios.delete(
-//         `http://localhost:5000/${localStorage.getItem('sid')}/admin_control/delete_admin`,
-//         formData,
-//         {
-//           headers: {
-//             'Authorization': `Bearer ${token}`,
-//             'Content-Type': 'multipart/form-data'
-//           }
-//         }
-//       );
-//       alert(response.data.msg);
-//     } catch (error) {
-//       console.log(error);
+//     else {
 //       alert('Failed to delete admin.');
+//       return;
 //     }
+//   }
 // };
+
+delteAdmin(deleteId)
+  .then(res=>{
+    console.log(res.data)
+    MySwal.fire({
+      html: <i>{res.data.msg}</i>,
+      icon: 'success'
+  }).then(() => {
+      window.location.reload();
+  });
+  }).catch(err=>{
+    console.log(err)
+    MySwal.fire({
+      html: <i> {err}</i>,
+      icon: 'fail'
+  }).then(() => {
+      window.location.reload();
+  });
+  })
+};
 
   return (
     <div className='container-groub-AdminControl'>

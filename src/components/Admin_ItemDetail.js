@@ -93,30 +93,52 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       return;
     }
 
-    try {
-      const response = await axios.post("http://localhost:5000/sid", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
-        },
-      });
-      console.log(response.data[0]["Name"],response.data[0]["major"],response.data[0]["year"])
-      setName_Unaliable(response.data[0]["Name"])
-      setDepartment_Unaliable(response.data[0]["major"])
-      setYear_Unaliable(response.data[0]["year"])
-      
+    loadUser_parth(formData)
+    .then(res=>{
+      console.log(res.data)
+      MySwal.fire({
+        html: <i>{res.data.msg}</i>,
+        icon: 'success'})
+      console.log(res.data[0]["Name"],res.data[0]["major"],res.data[0]["year"])
+      setName_Unaliable(res.data[0]["Name"])
+      setDepartment_Unaliable(res.data[0]["major"])
+      setYear_Unaliable(res.data[0]["year"])
+      })
+      .catch(err=>{
+        console.log(err)
+        if (err.response.status === 404) {
+            alert('Please Fill Student Id');
+            return;}
+        MySwal.fire({
+          html: <i> {err}</i>,
+          icon: 'fail'})});
 
-    } catch (error) {
-      if (error.response.status === 401) {
-        alert('Please log in first!');
-        return;
-      } else if (error.response.data.msg) {
-        alert(`Failed to add admin. ${error.response.data.msg}`);
-        return;
-      }
-      alert('Failed to add admin.');
+
+    // try {
+    //   const response = await axios.post("http://localhost:5000/sid", formData, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "multipart/form-data", // Set the content type to multipart/form-data
+    //     },
+    //   });
+
+      // console.log(response.data[0]["Name"],response.data[0]["major"],response.data[0]["year"])
+      // setName_Unaliable(response.data[0]["Name"])
+      // setDepartment_Unaliable(response.data[0]["major"])
+      // setYear_Unaliable(response.data[0]["year"])
+
+    //   } catch (error) {
+    //     if (error.response.status === 401) {
+    //       alert('Please log in first!');
+    //       return;
+    //     } else if (error.response.data.msg) {
+    //       alert(`Failed to add admin. ${error.response.data.msg}`);
+    //       return;
+    //     }
+    //     alert('Failed to add admin.');
+    //   }
+
     }
-  }
 
   const handleAvailble = async (event) => {
       event.preventDefault();
@@ -162,9 +184,10 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }
         alert("Failed to submit.");
       }
-    }
+      window.location.reload();
+  }
 
-    const handleUnvailble = async (event) => {
+  const handleUnvailble = async (event) => {
       event.preventDefault();
       console.log(status);
       
@@ -211,7 +234,8 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }
         alert("Failed to submit.");
       }
-    }
+      window.location.reload();
+  }
 
   const handleDelete = () => {
     const result = window.confirm('Are you sure you want to delete?');
@@ -222,10 +246,12 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       delteItem(id)
       .then(res=>{
         console.log(res.data)
-        }).catch(err=>{
-          console.log(err)
+        window.location.reload();
         })
-
+      .catch(err=>{
+        console.log(err)
+        })
+        
     } else {
       console.log('User clicked Cancel');
       setIsDeleting(false);
@@ -250,7 +276,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   //       icon: 'fail'
   //   })
   //   })
-}
+  }
 
   return (
     <>
