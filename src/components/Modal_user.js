@@ -32,9 +32,9 @@ function Modal_popup({ id, title, type, status, department, year, location, imag
   };
   return (
     <>
-      <Button variant="primary" onClick={Islogin}>
+      {/* <Button variant="primary" onClick={Islogin}>
         Borrow
-      </Button>
+      </Button> */}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

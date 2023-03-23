@@ -7,8 +7,8 @@ import {CardActionArea, CardActions } from '@mui/material';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Modal from '../components/Modal_user'
-import { width } from '@mui/system';
-import { left } from 'holderjs';
+// import { width } from '@mui/system';
+// import { left } from 'holderjs';
 
 export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid}) {
   
@@ -41,28 +41,28 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
           </Typography>
           <Typography variant="body2" color="text.secondary">
             <Row style={{marginTop:'12%'}}>
-              <Col>
+              {/* <Col>
                 <p style={{fontSize : '11px',textAlign:'left'}}>Category: {category}</p>
               </Col>
               <Col>
                 <p style={{fontSize : '11px',textAlign:'left'}}>Type: {type}</p>
-              </Col>
+              </Col> */}
             </Row>
             <Row>
               <Col>
               <p style={{fontSize : '11px',textAlign:'center'}}>Location: {location}</p>
               </Col>
-              <Col>
+              {/* <Col>
                 <p style={{fontSize : '11px',textAlign:'left'}}>Department: {department}</p>
-              </Col>
+              </Col> */}
             </Row>
             <Row>
               <Col>
                 <p style={{fontSize : '11px' ,width:'200%',textAlign:'left'}}>studentid: {studentid}</p>
               </Col>
-              <Col>
+              {/* <Col>
                 <p style={{fontSize : '11px'}}>Year: {year}</p>
-              </Col>
+              </Col> */}
             </Row>
             <Row>
               <Col>
