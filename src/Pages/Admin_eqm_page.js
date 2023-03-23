@@ -91,7 +91,7 @@ function AdminEquipmentPage() {
             <Additem></Additem>
         </div> 
       </div>
-      <div className="row row-cols-3 Borrow_content">
+      <div className="Borrow_content row row-cols-3 ">
         {filteredEquipmentData.map((equipment) => (
           <div key={equipment.id} className="Card">
             <CardDisplay

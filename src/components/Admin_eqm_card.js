@@ -13,6 +13,7 @@ import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
 
+
 export default function MultiActionAreaCard({ id,name, title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const byteCharacters = atob(image);
   const byteNumbers = new Array(byteCharacters.length);
@@ -26,7 +27,7 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
   
   return (
 
-    <Card className="mx-auto card" sx={{ maxWidth: 345, maxHeight :1000}}>
+    <Card className="card mx-auto " sx={{ maxWidth: 345, maxHeight :1000}}>
       <CardActionArea>
         <CardMedia 
           component="img"
@@ -37,8 +38,10 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
         <CardContent>
        
           <Typography gutterBottom variant="h5" component="div">
-            <p>{title} </p>
-            <p>(id:{id})</p>
+          <h5>
+            <h2>{title} </h2>
+            <h2>(id:{id})</h2>
+          </h5>
           </Typography>
 
 
