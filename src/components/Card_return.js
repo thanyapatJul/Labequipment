@@ -5,8 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardMedia from '@mui/material/CardMedia';
-// import '../Styles/Card.css'
-// import '../Styles/Borrowing.css'
+
 
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
@@ -17,7 +16,7 @@ import Return from '../components/Return'
 import { run as runHolder } from 'holderjs/holder';
 
 
-function CardDisplay({ id, title, status, type, image, category }) {
+function CardDisplay({ id, title, status, type, image, category,borrowdate,returndate }) {
   const [cardTitle, setCardTitle] = useState(title);
   useEffect(() => {runHolder('image-class-name'); });
 
@@ -53,8 +52,8 @@ function CardDisplay({ id, title, status, type, image, category }) {
               <h5>
                 <Col>
                   <p className="Roboto-Slab">ID: {id}</p>
-                  <p className="Roboto-Slab">Category: {category}</p>
-                  <p className="Roboto-Slab">Type: {type}</p>
+                  <p className="Roboto-Slab">Borrow Date: {borrowdate || '-'}</p>
+                  <p className="Roboto-Slab">Return Date: {returndate || '-'}</p>
                 </Col>
               </h5>
             </Row>
