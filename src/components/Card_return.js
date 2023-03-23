@@ -1,18 +1,14 @@
 import React, { useState , useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CardMedia from '@mui/material/CardMedia';
 
-
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
 
-import {Link,useNavigate} from 'react-router-dom';
-import Return from '../components/Return'
 import { run as runHolder } from 'holderjs/holder';
 
 
@@ -57,15 +53,15 @@ function CardDisplay({ id, title, status, type, image, category,borrowdate,retur
                 </Col>
               </h5>
             </Row>
-            
-          <Return
+          {/* ส่งไปที่ Modal_return */}
+          {/* <Return
             id={id}
             title={title}
             type={type}
             status={status}
             image={imageUrl}
             category={category}
-          />
+          /> */}
         </Card.Body>
       </Card>
     </Row>

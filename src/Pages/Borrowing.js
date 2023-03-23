@@ -43,29 +43,36 @@ function Borrowing() {
   };
 
   const filteredborrowingData = borrowingData.filter((borrow) => {
-    if (selectedCategory === 'All') {
-      return true; 
-    } else {
-      return borrow.category === selectedCategory; 
-    }
-  }).filter((borrow) =>
-    borrow.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      if (selectedCategory === 'All' && selectedType === 'All') {
+        return true; // include all equipment if "All" category is selected
+      } 
+      else if (selectedCategory === 'All' ) {
+        return borrow.type === selectedType; // include all equipment if "All" category is selected
+      } 
+      else if (selectedType === 'All' ) {
+        return borrow.category === selectedCategory; // include all equipment if "All" category is selected
+      } 
+      else {
+        return borrow.type === selectedType && borrow.category === selectedCategory; // only include equipment that matches selected category
+      }
+    }).filter((borrow) =>
+      borrow.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   return (
     <div >
       <div className="Borrow_header ">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
-          <option value='Equåipment'>Equipment</option>
-          <option value='Yoga'>Yoga</option>
-          <option value='Hardware'>Hardware</option>
+          <option value='Textbooks'>Textbooks</option>
+          <option value='Course&Reserves'>Course Reserves</option>
+          <option value='Technology&Equipment'>Technology Equipment</option>
         </select>
         <select value={selectedType} onChange={(e) => handleTypeSelect(e.target.value)}>
           <option value='All'>All-type</option>
-          <option value='Equipment'>Equipment</option>
-          <option value='Yoga'>Yoga</option>
-          <option value='Hardware'>Hardware</option>
+          <option value='Short-Term'>Short-Term</option>
+          <option value='Long-Term'>Long-Term</option>
+          <option value='In-Library'>In-Library</option>
         </select>
         <input
           type="text"
@@ -86,6 +93,8 @@ function Borrowing() {
             status={borrow.status}
             image={borrow.image}
             category={borrow.category}
+            borrowdate={borrow.b_date}
+            returndate={borrow.r_date}
           />
         ))}
       </div>

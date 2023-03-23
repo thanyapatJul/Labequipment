@@ -182,7 +182,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
             },
           }
         );
-        alert(response.data.msg);
+        MySwal.fire({ html: <i>{response.data.msg}</i>,icon: "success",showConfirmButton: false,timer: 1000,})
       } catch (error) {
         if (error.response.status === 401) {
           alert('Please log in first!');
@@ -193,7 +193,9 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }
         alert("Failed to submit.");
       }
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
   }
 
   const handleUnvailble = async (event) => {
@@ -204,16 +206,12 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       // Submit 
       const formData = new FormData();
       formData.append('status', new_status_Unavailable);
-      // formData.append('title', title);
       formData.append('eqm_id', id);
       formData.append('s_id', sidInputnow);
       formData.append('borrow_id', borrowDate_Unaliable);
       formData.append('return_id', returnDate_Unaliable);
       formData.append('admin_id', localStorage.getItem('sid'));
-
-      // formData.append('type', type);
-      // formData.append('category', category);
-      // formData.append('location', location);
+      
       console.log(new_status_Unavailable,sidInputnow,id,borrowDate_Unaliable,returnDate_Unaliable,localStorage.getItem('sid')); // will output "Available" to the console
 
       if (!token) {
@@ -232,12 +230,18 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
             },
           }
         );
-        alert(response.data.msg);
+        MySwal.fire({ html: <i>{response.data.msg}</i>,icon: "success",showConfirmButton: false,timer: 1000,})
       } catch (error) {
         if (error.response.status === 401) {
           alert('Please log in first!');
           return;
-        } else if (error.response.data.msg) {
+        } 
+        else if (error.response.status === 404) {
+          MySwal.fire({ html: <i>{error.response.data.msg}</i>,icon: "error",showConfirmButton: false,timer: 1000,})
+          // alert(error.response.data.msg);
+          return;
+        }
+        else if (error.response.data.msg) {
           alert(`No Response data. ${error.response.data.msg}`);
           return;
         }

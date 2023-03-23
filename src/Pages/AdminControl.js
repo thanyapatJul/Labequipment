@@ -118,17 +118,29 @@ delteAdmin(deleteId)
       html: <i>{res.data.msg}</i>,
       icon: 'success'
   }).then(() => {
+    setTimeout(() => {
       window.location.reload();
-  });
-  }).catch(err=>{
-    console.log(err)
-    MySwal.fire({
-      html: <i> {err}</i>,
-      icon: 'fail'
-  }).then(() => {
-      window.location.reload();
+    }, 1000);
   });
   })
+  .catch((err) => {
+    console.log(err);
+    if (err.response.status === 404) {
+          MySwal.fire({
+          html: <i> {err.response.data.msg}</i>,
+          icon: "error",})
+        return;
+    }
+    else if (err.response.status === 500) {
+        MySwal.fire({
+        html: <i> {err.response.data.msg}</i>,
+        icon: "error",})
+      return;
+      }
+    setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+  });
 };
 
   return (

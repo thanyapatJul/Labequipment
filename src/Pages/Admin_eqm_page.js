@@ -69,15 +69,15 @@ function AdminEquipmentPage() {
       <div className="AdminEquipment_header">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
-          <option value='Equipment'>Equipment</option>
-          <option value='Yoga'>Yoga</option>
-          <option value='Hardware'>Hardware</option>
+          <option value='Textbooks'>Textbooks</option>
+          <option value='Course&Reserves'>Course Reserves</option>
+          <option value='Technology&Equipment'>Technology Equipment</option>
         </select>
         <select value={selectedType} onChange={(e) => handleTypeSelect(e.target.value)}>
           <option value='All'>All-type</option>
-          <option value='Equipment'>Equipment</option>
-          <option value='Yoga'>Yoga</option>
-          <option value='Hardware'>Hardware</option>
+          <option value='Short-Term'>Short-Term</option>
+          <option value='Long-Term'>Long-Term</option>
+          <option value='In-Library'>In-Library</option>
         </select>
         <input
           type="text"

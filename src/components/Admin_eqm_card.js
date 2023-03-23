@@ -26,11 +26,11 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
   
   return (
 
-    <Card className="card mx-auto" sx={{ maxWidth: 345, maxHeight :400}}>
+    <Card className="mx-auto card" sx={{ maxWidth: 345, maxHeight :1000}}>
       <CardActionArea>
         <CardMedia 
           component="img"
-          height="200"
+          height="250"
           image={imageUrl}
           alt={'No image'}
         />

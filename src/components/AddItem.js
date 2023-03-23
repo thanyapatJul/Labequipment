@@ -122,20 +122,21 @@ function Modal_popup() {
               <Form.Control type="text" name="eqm_id" placeholder="Insert ItemId " value={inputs.eqm_id || ""} onChange={handleChange}/>
 
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea2"
-            >
-              <Form.Label>Type</Form.Label>
-              <Form.Control type="text" name="eqm_type" placeholder="Insert Type" value={inputs.eqm_type || ""} onChange={handleChange} />
-
-            </Form.Group>
+            
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea2"
             >
               <Form.Label>Category</Form.Label>
               <Form.Control type="text" name="category" placeholder=" Insert Category" value={inputs.category || ""} onChange={handleChange} />
+
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea2"
+            >
+              <Form.Label>Type</Form.Label>
+              <Form.Control type="text" name="eqm_type" placeholder="Insert Type" value={inputs.eqm_type || ""} onChange={handleChange} />
 
             </Form.Group>
             <Form.Group

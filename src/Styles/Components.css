@@ -3,7 +3,7 @@
     box-shadow: 0 0 10px 5px #dfdcdb;
     background-color: #ffffff ;
     border-radius: 1rem;
-    min-width: 25rem;
+    max-width: 25rem;
     display: 'flex' ;
     height : '100%';
 

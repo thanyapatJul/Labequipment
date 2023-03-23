@@ -72,19 +72,19 @@ function EquipmentPage() {
   );
 
   return (
-    <div className="Equipment_page">
-      <div className="Equipment_header">
+    <div>
+      <div className="Borrow_header">
         <select value={selectedCategory} onChange={(e) => handleCategorySelect(e.target.value)}>
           <option value='All'>All-cate</option>
-          <option value='Electrical source'>Electrical source</option>
-          <option value='Measurment'>Measurment</option>
-          <option value='Hardware'>Hardware</option>
+          <option value='Textbooks'>Textbooks</option>
+          <option value='Course&Reserves'>Course Reserves</option>
+          <option value='Technology&Equipment'>Technology Equipment</option>
         </select>
         <select value={selectedType} onChange={(e) => handleTypeSelect(e.target.value)}>
           <option value='All'>All-type</option>
-          <option value='Multimeter'>Multimeter</option>
-          <option value='Generator'>Generator</option>
-          <option value='Hardware'>Hardware</option>
+          <option value='Short-Term'>Short-Term</option>
+          <option value='Long-Term'>Long-Term</option>
+          <option value='In-Library'>In-Library</option>
         </select>
         <input
           type="text"
@@ -95,7 +95,7 @@ function EquipmentPage() {
 
       </div>
 
-      <div className="Equipment_content">
+      <div className="Borrow_content">
         {filteredEquipmentData.map((equipment) => (
           <div key={equipment.id} className="Card">
             <CardDisplay
@@ -109,6 +109,7 @@ function EquipmentPage() {
               image={equipment.image}
               category={equipment.category}
               studentid={equipment.studentid}
+              returndate={equipment.r_date}
             />
           </div>
         ))}

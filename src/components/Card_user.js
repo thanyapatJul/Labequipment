@@ -1,20 +1,17 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import {CardActionArea, CardActions } from '@mui/material';
+import React, { useState , useEffect} from 'react';
+import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Modal from '../components/Modal_user'
-// import { width } from '@mui/system';
-// import { left } from 'holderjs';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CardMedia from '@mui/material/CardMedia';
 
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
 
-export default function MultiActionAreaCard({ id, title, type, status, department, year, location, image, category,studentid}) {
+import { run as runHolder } from 'holderjs/holder';
+
+function CardDisplay({ id, title, type, status, returndate,department, year, location, image, category,studentid}) {
   
 // convert base 64 to url
   const byteCharacters = atob(image);
@@ -30,55 +27,37 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
 
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-            component="img"
-            height="140"
-            image={imageUrl}
-            alt="image"
-          />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div" >
-            <Col><Row style={{justifyContent: 'center', alignItems: 'center'}}>{title}</Row></Col>
-            <Col><Row style={{justifyContent: 'center', alignItems: 'center' ,fontSize:'1rem' , marginTop:'3%'}}>( Item id: {id} )</Row></Col>
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            <Row style={{marginTop:'12%'}}>
-              {/* <Col>
-                <p style={{fontSize : '11px',textAlign:'left'}}>Category: {category}</p>
-              </Col>
-              <Col>
-                <p style={{fontSize : '11px',textAlign:'left'}}>Type: {type}</p>
-              </Col> */}
+    <Row style={{ marginLeft: '2%' }}>
+      <Card className="card mx-auto">
+        
+        <CardMedia 
+          component="img"
+          height="300"
+          image={imageUrl}
+          alt={'No image'}
+        />
+        
+        {/* <Card.Img variant="top" src={image}/> */}
+        
+        <Card.Title className="Kanit" >{title}</Card.Title>
+        
+        {/* <Card.Body className="h1"> */}
+        
+        <Card.Body className="Roboto-Slab">
+            <Row >
+              <h5>
+                <Col>
+                  <p className="Roboto-Slab">ID: {id}</p>
+                  <p className="Roboto-Slab">Location: {location || '-'}</p>
+                  <p className="Roboto-Slab">Studentid: {studentid || '-'}</p>
+                  <p className="Roboto-Slab">Return Date: {returndate || '-'}</p>
+                  <p>{"👇"}</p>
+                  <span className={`Card-status ${status === 'Available' ? 'available' : 'not-available'}`}>{status}</span>
+                </Col>
+              </h5>
             </Row>
-            <Row>
-              <Col>
-              <p style={{fontSize : '15px',textAlign:'center'}}>Location: {location}</p>
-              </Col>
-              {/* <Col>
-                <p style={{fontSize : '11px',textAlign:'left'}}>Department: {department}</p>
-              </Col> */}
-            </Row>
-            <Row>
-              <Col className='middle-Card'>
-                <p style={{fontSize : '15px' ,width:'200%',textAlign:'center'}}>studentid: {studentid}</p>
-              </Col>
-              {/* <Col>
-                <p style={{fontSize : '11px'}}>Year: {year}</p>
-              </Col> */}
-            </Row>
-            <Row>
-              <Col >
-                 <span className={`Card-status ${status === 'Available' ? 'available' : 'not-available'}`}>{status}</span>
-              </Col>
-            </Row>
-
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Modal 
+          {/* ส่งไปที่ Modal_Modal*/}
+          {/* <Modal 
                 id={id}
                 title={title}
                 type={type}
@@ -89,8 +68,10 @@ export default function MultiActionAreaCard({ id, title, type, status, departmen
                 image={image}
                 category={category}
                 studentid={studentid}>
-          </Modal>
-      </CardActions>
-    </Card>
+          </Modal> */}
+        </Card.Body>
+      </Card>
+    </Row>
   );
 }
+export default CardDisplay;
