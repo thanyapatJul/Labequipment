@@ -34,7 +34,7 @@ function Register_page(){
       redirect: 'follow'
     };
     
-    fetch("http://localhost:5000/register", requestOptions)
+    fetch("https://backend-sql-yypd53ub4q-et.a.run.app/register", requestOptions)
       .then(response => response.json())
       .then(result => {
         
