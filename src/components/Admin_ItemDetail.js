@@ -113,13 +113,13 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
       .catch((err) => {
         console.log(err);
         if (err.response.status === 404) {
-          alert(`Failed to Submit. ${err.response.data.msg}`);
+          MySwal.fire({
+            title: <i> {err.response.data.msg}</i>,
+            icon: "error",
+          });
           return;
         }
-        MySwal.fire({
-          html: <i> {err}</i>,
-          icon: "fail",
-        });
+        
       });
 
     // try {
@@ -242,7 +242,9 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         }
         alert("Failed to submit.");
       }
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
   }
 
   const handleDelete = () => {
@@ -320,12 +322,13 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
         More Detail
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal className = "modalcard" show={show} onHide={handleClose}>
+        <Modal.Body className = "modalbody" >
         <Modal.Header closeButton>
           <Modal.Title>Item Detail</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form className='Form-Container'>
+
+          <Form className='modalinbody Form-Container'>
             <div>
                 <Form.Group 
                 className="mb-3"
@@ -385,16 +388,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <DepartmentGroup value={department} />
                     {/* <BorrowDateGroup value={borrowDate} onChange={setBorrowDate} />
                     <ReturnDateGroup value={returnDate} onChange={setReturnDate} /> */}
-                    {/*/////////////////////// */}
 
-                    <Form.Group 
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>Item Image</Form.Label>
-                        <Form.Control type="file" name="image" accept="image/*" />
-                    </Form.Group>
-                    {/* ///////////////////// */}
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                           Back
@@ -405,7 +399,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                       </Modal.Footer>
                 </div>
           
-                  
 
                 ):(//!IsChecked means Unavaliable 
                 <div className='embedded-text-container'>
@@ -425,15 +418,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <DepartmentGroup value={department_Unaliable} onChange={setDepartment_Unaliable} />
                     <BorrowDateGroup value={borrowDate_Unaliable} onChange={handleBorrowDateChange} />
                     <ReturnDateGroup value={returnDate_Unaliable} onChange={handleReturnDateChange} />
-                    {/*/////////////////////// */}
-                    <Form.Group 
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea2"
-                    >
-                        <Form.Label>Item Image</Form.Label>
-                        <Form.Control type="file" name="image" accept="image/*" />
-                    </Form.Group>
-                    {/* ///////////////////// */}
+                    
                     <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                       Back
