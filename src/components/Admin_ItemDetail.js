@@ -55,8 +55,9 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   const handleresetid = (e) => {
     e.preventDefault();
     if (!isChecked) {
+      setSidInputnow('');
       setName_Unaliable('');
-      setYear_Unaliable('')
+      setYear_Unaliable('');
       setDepartment_Unaliable('')}
   }
 
