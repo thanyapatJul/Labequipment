@@ -5,6 +5,10 @@ import '../Styles/AdminEquipment.css';
 import Additem from '../components/AddItem'
 import { listeuqipmentAdmin } from '../function/function';
 
+import '../Styles/Fonts.css'
+import '../Styles/Page.css'
+import '../Styles/Components.css'
+
 function AdminEquipmentPage() {
   const [equipmentData, setEquipmentData] = useState([]);
 
@@ -75,7 +79,7 @@ function AdminEquipmentPage() {
       <div className='Addsection'>
             <Additem></Additem>
       </div>
-      <div className="Equipment_content">
+      <div className="row row-cols-3 Borrow_content">
         {filteredEquipmentData.map((equipment) => (
           <div key={equipment.id} className="Card">
             <CardDisplay

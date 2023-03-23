@@ -15,7 +15,6 @@ function Register_page(){
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({...values, [name]: value}))
-        console.log(inputs)
   }
 
   const handleSubmit = (event) => {
@@ -38,13 +37,13 @@ function Register_page(){
     fetch("http://localhost:5000/register", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
+        
         if (result.access_token) {
             MySwal.fire({
                 html: <i>Registry complete!</i>,
                 icon: 'success'
               }).then((value) => {
-                console.log(result)
+                
                 navigate('/')
                 localStorage.setItem('token',result.access_token)
                 localStorage.setItem('username',result.role)

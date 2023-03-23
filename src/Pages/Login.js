@@ -17,7 +17,6 @@ function Login_page(){
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({...values, [name]: value}))
-        console.log(inputs)
   }
 
   const handleSubmit = (event) => {

@@ -32,8 +32,6 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
   const [new_status_Availble, setNew_status_Availble] = useState('Available');
   const [new_status_Unavailable, setNew_status_Unavailable] = useState('Unavailable');
   
-  
-  
   // const [name, setName] = useState('');
   // const [Lastname, setLastname] = useState('');
   // const [year, setYear] = useState('');
@@ -94,25 +92,35 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     }
 
     loadUser_parth(formData)
-    .then(res=>{
-      console.log(res.data)
-      MySwal.fire({
-        html: <i>{res.data.msg}</i>,
-        icon: 'success'})
-      console.log(res.data[0]["Name"],res.data[0]["major"],res.data[0]["year"])
-      setName_Unaliable(res.data[0]["Name"])
-      setDepartment_Unaliable(res.data[0]["major"])
-      setYear_Unaliable(res.data[0]["year"])
+      .then((res) => {
+        console.log(res.data);
+        MySwal.fire({
+          // title: "User find",
+          html: <i>{res.data[0]["msg"]}</i>,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(
+          res.data[0]["Name"],
+          res.data[0]["major"],
+          res.data[0]["year"]
+        );
+        setName_Unaliable(res.data[0]["Name"]);
+        setDepartment_Unaliable(res.data[0]["major"]);
+        setYear_Unaliable(res.data[0]["year"]);
       })
-      .catch(err=>{
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
         if (err.response.status === 404) {
-            alert('Please Fill Student Id');
-            return;}
+          alert(`Failed to Submit. ${err.response.data.msg}`);
+          return;
+        }
         MySwal.fire({
           html: <i> {err}</i>,
-          icon: 'fail'})});
-
+          icon: "fail",
+        });
+      });
 
     // try {
     //   const response = await axios.post("http://localhost:5000/sid", formData, {
@@ -122,10 +130,10 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
     //     },
     //   });
 
-      // console.log(response.data[0]["Name"],response.data[0]["major"],response.data[0]["year"])
-      // setName_Unaliable(response.data[0]["Name"])
-      // setDepartment_Unaliable(response.data[0]["major"])
-      // setYear_Unaliable(response.data[0]["year"])
+    //  console.log(response.data[0]["Name"],response.data[0]["major"],response.data[0]["year"])
+    //  setName_Unaliable(response.data[0]["Name"])
+    //  setDepartment_Unaliable(response.data[0]["major"])
+    //  setYear_Unaliable(response.data[0]["year"])
 
     //   } catch (error) {
     //     if (error.response.status === 401) {
@@ -405,7 +413,7 @@ function Modal_popup({ id, name,title, type, status, department, year, location,
                     <Button variant="secondary" onClick={handleClose}>
                       Back
                     </Button>
-                    <Button variant="primary" onClick={handleUnvailble}>
+                    <Button variant="primary" disabled={status == new_status_Unavailable} onClick={handleUnvailble}>
                       Ok_Unavailable
                     </Button>
                     </Modal.Footer>

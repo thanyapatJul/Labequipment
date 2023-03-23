@@ -48,22 +48,30 @@ function Modal_popup() {
     console.log(formdata)
 
     AddItem(formdata)
-    .then(res=>{
-      console.log(res.data)
+    .then((res) => {
+      console.log(res.data);
       MySwal.fire({
-        html: <i>{res.data.msg}</i>,
-        icon: 'success'})
-      .then(() => {
-        window.location.reload();});})
-      .catch(err=>{
-      console.log(err)
-      MySwal.fire({
-        html: <i> {err}</i>,
-        icon: 'fail'
-    }).then(() => {
-        window.location.reload();
-    });
+        icon:
+          res.data.msg == "This equipment added successfully."
+            ? "success"
+            : "error",
+        title: res.data.msg,
+      }).then(() => {
+        if (res.data.msg == "This equipment added successfully.") {
+          window.location.reload();
+        }
+      })
     })
+    .catch((err) => {
+      console.log(err);
+      if (err.response.status === 500) {
+            MySwal.fire({
+            html: <i> {err.response.data.msg}</i>,
+            icon: "fail",})
+          return;
+        }
+      window.location.reload();
+    });
   }
   return (
     <>
