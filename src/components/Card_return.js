@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import CardMedia from '@mui/material/CardMedia';
 // import '../Styles/Card.css'
 // import '../Styles/Borrowing.css'
 
@@ -21,10 +21,26 @@ function CardDisplay({ id, title, status, type, image, category }) {
   const [cardTitle, setCardTitle] = useState(title);
   useEffect(() => {runHolder('image-class-name'); });
 
+  const byteCharacters = atob(image);
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  const byteArray = new Uint8Array(byteNumbers);
+  const blob = new Blob([byteArray], {type: 'image/jpeg'});
+  const imageUrl = URL.createObjectURL(blob);
+
+
   return (
     <Row style={{ marginLeft: '2%' }}>
       <Card className="card mx-auto">
-        <Card.Img variant="top" src="holder.js/300x200" style={{ objectFit: 'cover' }} />
+        {/* <Card.Img variant="top" src="holder.js/300x200" style={{ objectFit: 'cover' }} /> */}
+        <CardMedia 
+          component="img"
+          height="300"
+          image={imageUrl}
+          alt={'No image'}
+        />
         
         {/* <Card.Img variant="top" src={image}/> */}
         
@@ -48,7 +64,8 @@ function CardDisplay({ id, title, status, type, image, category }) {
             title={title}
             type={type}
             status={status}
-            image={image}
+            // image={image}
+            image={imageUrl}
             category={category}
           />
         </Card.Body>

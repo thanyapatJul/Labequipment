@@ -1,4 +1,5 @@
-import * as React from 'react';
+
+import React, { useState , useEffect} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -12,6 +13,7 @@ import '../Styles/Card.css'
 import '../Styles/Fonts.css'
 import '../Styles/Page.css'
 import '../Styles/Components.css'
+import { run as runHolder } from 'holderjs/holder';
 
 export default function MultiActionAreaCard({ id,name, title, type, status, department, year, location, image, category,studentid ,returndate }) {
   const byteCharacters = atob(image);
@@ -22,6 +24,8 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
   const byteArray = new Uint8Array(byteNumbers);
   const blob = new Blob([byteArray], {type: 'image/jpeg'});
   const imageUrl = URL.createObjectURL(blob);
+  
+  
   return (
 
     <Card className="card mx-auto" sx={{ maxWidth: 345, maxHeight :400}}>
@@ -30,7 +34,7 @@ export default function MultiActionAreaCard({ id,name, title, type, status, depa
           component="img"
           height="200"
           image={imageUrl}
-          alt={imageUrl}
+          alt={'No image'}
         />
         <CardContent>
        
