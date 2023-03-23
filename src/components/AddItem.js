@@ -39,12 +39,28 @@ function Modal_popup() {
     const fileInput = document.getElementById("image-input");
     const imageFile = fileInput.files[0];
 
+    if (imageFile === undefined){
+      MySwal.fire({
+        html: <i>Please add image</i>,
+        icon: "error",})
+      return;
+    }
+    if (imageFile.type === "image/jpeg" || imageFile.type === "image/png" || imageFile.type === "image/gif"){
+      formdata.append("image", imageFile); 
+    }else{
+      MySwal.fire({
+        html: <i>Invalid image type</i>,
+        icon: "error",})
+      return;
+    }
+
     formdata.append("title", inputs.title);
     formdata.append("eqm_id", inputs.eqm_id);
     formdata.append("eqm_type", inputs.eqm_type);
     formdata.append("category", inputs.category);
     formdata.append("location", inputs.location);
-    formdata.append("image", imageFile); 
+    // formdata.append("image", imageFile); 
+    
     console.log(formdata)
 
     AddItem(formdata)

@@ -32,6 +32,7 @@ function AdminEquipmentPage() {
     loadData();
     console.log(equipmentData); // This will still show the previous value of equipmentData
   }, []);
+
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -45,14 +46,23 @@ function AdminEquipmentPage() {
   };
 
   const filteredEquipmentData = equipmentData.filter((equipment) => {
-    if (selectedCategory === 'All') {
+    if (selectedCategory === 'All' && selectedType === 'All') {
       return true; // include all equipment if "All" category is selected
-    } else {
-      return equipment.category === selectedCategory; // only include equipment that matches selected category
+    } 
+    else if (selectedCategory === 'All' ) {
+      return equipment.type === selectedType; // include all equipment if "All" category is selected
+    } 
+    else if (selectedType === 'All' ) {
+      return equipment.category === selectedCategory; // include all equipment if "All" category is selected
+    } 
+    else {
+      return equipment.type === selectedType && equipment.category === selectedCategory; // only include equipment that matches selected category
     }
   }).filter((equipment) =>
     equipment.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+
 
   return (
     <div className="AdminEquipment_page">
